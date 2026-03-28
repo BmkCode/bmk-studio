@@ -377,13 +377,12 @@ export default function ProjetClient() {
   }, []);
 
   const navigate = useCallback((dir: 1 | -1) => {
-    if (lbIncoming !== null) return;
     const next = (lbCurrent + dir + total) % total;
     setLbDir(dir);
     setLbIncomingLoaded(false);
     setLbTransitioning(false);
     setLbIncoming(next);
-  }, [lbCurrent, lbIncoming, total]);
+  }, [lbCurrent, total]);
 
   // Précharge les images prev/next dès que lbCurrent change
   useEffect(() => {
@@ -405,7 +404,7 @@ export default function ProjetClient() {
       setLbIncoming(null);
       setLbTransitioning(false);
       setLbIncomingLoaded(false);
-    }, 500);
+    }, 250);
     return () => clearTimeout(t);
   }, [lbIncoming, lbIncomingLoaded, lbTransitioning]);
 
@@ -803,8 +802,8 @@ export default function ProjetClient() {
             onTouchEnd={(e) => {
               touchEndX.current = e.changedTouches[0].clientX;
               const diff = touchStartX.current - touchEndX.current;
-              if (diff > 50) navigate(1);
-              if (diff < -50) navigate(-1);
+              if (diff > 50) { touchStartX.current = 0; navigate(1); }
+              else if (diff < -50) { touchStartX.current = 0; navigate(-1); }
             }}
           >
             {/* Image courante (sortante lors de la transition) */}
