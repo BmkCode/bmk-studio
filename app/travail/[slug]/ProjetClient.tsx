@@ -505,12 +505,12 @@ export default function ProjetClient() {
 
         {/* ── HERO IMAGE ── */}
         <div
-          className="mx-auto w-full"
+          className="projet-hero-wrap mx-auto w-full"
           style={{ maxWidth: 1100, paddingLeft: 44, paddingRight: 44 }}
         >
           <div
             ref={heroRef}
-            className="relative w-full overflow-hidden"
+            className="projet-hero relative w-full overflow-hidden"
             style={{ height: 420, borderRadius: 8, backgroundColor: "#0b1018" }}
           >
             {hoverLogoSrc ? (
@@ -549,7 +549,7 @@ export default function ProjetClient() {
         {/* ── META STRIP ── */}
         <div
           ref={metaRef}
-          className="mx-auto w-full"
+          className="projet-meta mx-auto w-full"
           style={{
             maxWidth: 1100,
             paddingLeft: 44,
@@ -583,7 +583,7 @@ export default function ProjetClient() {
         {/* ── CORPS ── */}
         <div
           ref={bodyRef}
-          className="mx-auto w-full"
+          className="projet-corps mx-auto w-full"
           style={{
             maxWidth: 1100,
             paddingLeft: 44,
@@ -632,7 +632,7 @@ export default function ProjetClient() {
 
         {/* ── GALERIE ── */}
         <div
-          className="mx-auto w-full"
+          className="projet-gallery mx-auto w-full"
           style={{
             maxWidth: 1100,
             paddingLeft: 44,
@@ -644,20 +644,20 @@ export default function ProjetClient() {
           }}
         >
           {/* Ligne 1 — 2 colonnes 1.618fr 1fr, h240 */}
-          <div ref={galleryRow1Ref} style={{ display: "grid", gridTemplateColumns: "1.618fr 1fr", gap: 6, height: 240 }}>
+          <div ref={galleryRow1Ref} className="gallery-row" style={{ display: "grid", gridTemplateColumns: "1.618fr 1fr", gap: 6, height: 240 }}>
             <ImageSlot src={imgs[1]} index={1} style={{ height: 240 }} onOpen={openLightbox} hoverLogoSrc={galleryLogoSrc} hoverLabelText={hoverLabelText} hoverLabelStyle={hoverLabelStyle} hoverLabelClass={hoverLabelClass} altText={galleryAlt} logoStyle={galleryLogoStyle} overlayBg={galleryOverlayBg} />
             <ImageSlot src={imgs[2]} index={2} style={{ height: 240 }} onOpen={openLightbox} hoverLogoSrc={galleryLogoSrc} hoverLabelText={hoverLabelText} hoverLabelStyle={hoverLabelStyle} hoverLabelClass={hoverLabelClass} altText={galleryAlt} logoStyle={galleryLogoStyle} overlayBg={galleryOverlayBg} />
           </div>
 
           {/* Ligne 2 — 3 colonnes égales, h160 */}
-          <div ref={galleryRow2Ref} style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 6, height: 160 }}>
+          <div ref={galleryRow2Ref} className="gallery-row" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 6, height: 160 }}>
             <ImageSlot src={imgs[3]} index={3} style={{ height: 160 }} onOpen={openLightbox} hoverLogoSrc={galleryLogoSrc} hoverLabelText={hoverLabelText} hoverLabelStyle={hoverLabelStyle} hoverLabelClass={hoverLabelClass} altText={galleryAlt} logoStyle={galleryLogoStyle} overlayBg={galleryOverlayBg} />
             <ImageSlot src={imgs[4]} index={4} style={{ height: 160 }} onOpen={openLightbox} hoverLogoSrc={galleryLogoSrc} hoverLabelText={hoverLabelText} hoverLabelStyle={hoverLabelStyle} hoverLabelClass={hoverLabelClass} altText={galleryAlt} logoStyle={galleryLogoStyle} overlayBg={galleryOverlayBg} />
             <ImageSlot src={imgs[5]} index={5} style={{ height: 160 }} onOpen={openLightbox} hoverLogoSrc={galleryLogoSrc} hoverLabelText={hoverLabelText} hoverLabelStyle={hoverLabelStyle} hoverLabelClass={hoverLabelClass} altText={galleryAlt} logoStyle={galleryLogoStyle} overlayBg={galleryOverlayBg} />
           </div>
 
           {/* Ligne 3 — 2 colonnes 1fr 1.618fr, h200 */}
-          <div ref={galleryRow3Ref} style={{ display: "grid", gridTemplateColumns: "1fr 1.618fr", gap: 6, height: 200 }}>
+          <div ref={galleryRow3Ref} className="gallery-row" style={{ display: "grid", gridTemplateColumns: "1fr 1.618fr", gap: 6, height: 200 }}>
             <ImageSlot src={imgs[6]} index={6} style={{ height: 200 }} onOpen={openLightbox} hoverLogoSrc={galleryLogoSrc} hoverLabelText={hoverLabelText} hoverLabelStyle={hoverLabelStyle} hoverLabelClass={hoverLabelClass} altText={galleryAlt} logoStyle={galleryLogoStyle} overlayBg={galleryOverlayBg} />
             <ImageSlot src={imgs[7]} index={7} style={{ height: 200 }} onOpen={openLightbox} hoverLogoSrc={galleryLogoSrc} hoverLabelText={hoverLabelText} hoverLabelStyle={hoverLabelStyle} hoverLabelClass={hoverLabelClass} altText={galleryAlt} logoStyle={galleryLogoStyle} overlayBg={galleryOverlayBg} />
           </div>

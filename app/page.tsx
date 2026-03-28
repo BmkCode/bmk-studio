@@ -28,7 +28,7 @@ export default function Home() {
     <>
       {/* ────────────────── HERO ────────────────── */}
       <main
-        className="relative flex min-h-screen"
+        className="hero-main relative flex min-h-screen"
         style={{ paddingLeft: 44, paddingTop: 80, paddingBottom: 70 }}
       >
         {/* Golden halo backdrop */}
@@ -43,7 +43,7 @@ export default function Home() {
 
         {/* Left content column */}
         <div
-          className="relative flex flex-col justify-center"
+          className="hero-left-col relative flex flex-col justify-center"
           style={{ maxWidth: "calc(100% - 310px)" }}
         >
           {/* Pulsing location badge */}
@@ -60,7 +60,7 @@ export default function Home() {
           {/* h1 */}
           <div ref={h1Ref}>
             <h1
-              className="font-archivo leading-[1.1] text-bmk-text"
+              className="hero-h1 font-archivo leading-[1.1] text-bmk-text"
               style={{
                 fontSize: 45,
                 letterSpacing: "-2px",
@@ -73,7 +73,7 @@ export default function Home() {
           </div>
 
           {/* Accroche Mea Culpa */}
-          <div ref={acrocheRef}>
+          <div ref={acrocheRef} className="hero-accroche">
             <p
               className="mt-2 text-bmk-accent"
               style={{ fontSize: 55 }}
@@ -110,7 +110,7 @@ export default function Home() {
           </div>
 
           {/* CTAs */}
-          <div ref={ctasRef} className="mt-8 flex flex-row items-center gap-4">
+          <div ref={ctasRef} className="hero-ctas mt-8 flex flex-row items-center gap-4">
             <a
               href="#portfolio"
               className="inline-flex h-11 items-center justify-center bg-bmk-accent px-7 font-inter text-sm font-light tracking-widest text-bmk-bg transition-all duration-300 hover:bg-bmk-accent-2 hover:shadow-[0_0_28px_rgba(255,180,0,0.35)]"
@@ -133,7 +133,7 @@ export default function Home() {
 
         {/* Right panel */}
         <div
-          className="absolute bottom-0 right-0 top-0"
+          className="hero-right-panel absolute bottom-0 right-0 top-0"
           aria-hidden
           style={{
             width: 290,

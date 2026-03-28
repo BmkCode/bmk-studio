@@ -189,7 +189,7 @@ export default function WorkSection() {
     >
       {/* Conteneur centré 1100px */}
       <div
-        className="mx-auto w-full"
+        className="work-section-inner mx-auto w-full"
         style={{ maxWidth: 1100, paddingLeft: 44, paddingRight: 44 }}
       >
         {/* Section header */}
@@ -241,6 +241,7 @@ export default function WorkSection() {
         {/* Grille golden ratio — 1100px, rows 220/160/220, gap 6px */}
         <div
           ref={gridRef}
+          className="work-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "1.618fr 1fr",

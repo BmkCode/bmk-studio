@@ -3,7 +3,7 @@ export default function Footer() {
     <footer style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
       {/* Conteneur centré 1100px */}
       <div
-        className="mx-auto flex w-full items-center justify-between"
+        className="footer-inner mx-auto flex w-full items-center justify-between"
         style={{
           maxWidth: 1100,
           paddingLeft: 44,

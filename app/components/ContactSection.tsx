@@ -41,7 +41,7 @@ export default function ContactSection() {
 
       {/* Conteneur centré 1100px */}
       <div
-        className="relative mx-auto w-full"
+        className="contact-section-inner relative mx-auto w-full"
         style={{ maxWidth: 1100, paddingLeft: 44, paddingRight: 44 }}
       >
         <div ref={titleRef}>

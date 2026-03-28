@@ -95,7 +95,7 @@ export default function FormationsClient() {
         {/* ── HEADER ── */}
         <section
           ref={headerRef}
-          className="mx-auto w-full"
+          className="formations-header mx-auto w-full"
           style={{
             maxWidth: 1100,
             paddingLeft: 44,
@@ -153,7 +153,7 @@ export default function FormationsClient() {
         {/* ── INTRO STRIP ── */}
         <section
           ref={introRef}
-          className="mx-auto w-full"
+          className="formations-intro mx-auto w-full"
           style={{
             maxWidth: 1100,
             paddingLeft: 44,
@@ -191,7 +191,7 @@ export default function FormationsClient() {
         {/* ── CARDS FORMATIONS ── */}
         <section
           ref={cardsRef}
-          className="mx-auto w-full"
+          className="formations-cards mx-auto w-full"
           style={{
             maxWidth: 1100,
             paddingLeft: 44,
@@ -205,7 +205,7 @@ export default function FormationsClient() {
           {formations.map((f) => (
             <div
               key={f.num}
-              className="flex items-start gap-8"
+              className="formation-card flex items-start gap-8"
               style={{
                 border: "1px solid rgba(255,255,255,0.05)",
                 borderRadius: 8,
@@ -215,7 +215,7 @@ export default function FormationsClient() {
             >
               {/* Numéro */}
               <span
-                className="font-meaculpa italic"
+                className="formation-num font-meaculpa italic"
                 style={{
                   fontSize: 40,
                   color: "rgba(212,168,67,0.35)",
@@ -267,7 +267,7 @@ export default function FormationsClient() {
 
               {/* CTA */}
               <div
-                className="flex flex-shrink-0 flex-col items-end justify-between self-stretch"
+                className="formation-cta flex flex-shrink-0 flex-col items-end justify-between self-stretch"
                 style={{ minWidth: 160 }}
               >
                 <div className="flex flex-col items-end gap-1">
@@ -299,7 +299,7 @@ export default function FormationsClient() {
         {/* ── BANDEAU SUR MESURE ── */}
         <section
           ref={bandeauRef}
-          className="mx-auto w-full"
+          className="formations-bandeau mx-auto w-full"
           style={{
             maxWidth: 1100,
             paddingLeft: 44,

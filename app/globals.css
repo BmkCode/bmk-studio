@@ -41,3 +41,97 @@ body {
   background-color: #090d13;
   color: #dde2ec;
 }
+
+/* ── MOBILE MENU ANIMATION ── */
+@keyframes slideDown {
+  from { transform: translateY(-16px); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+.mobile-menu-enter { animation: slideDown 0.28s ease forwards; }
+
+/* ── RESPONSIVE MOBILE (≤ 768px) ── */
+@media (max-width: 768px) {
+
+  /* Hero */
+  .hero-main  { padding-left: 24px !important; padding-right: 24px !important; padding-bottom: 48px !important; }
+  .hero-left-col { max-width: 100% !important; }
+  .hero-right-panel { display: none !important; }
+  .hero-h1    { font-size: 32px !important; letter-spacing: -1px !important; }
+  .hero-accroche p { font-size: 36px !important; }
+  .hero-ctas  { flex-direction: column !important; }
+  .hero-ctas a { width: 100% !important; justify-content: center !important; }
+
+  /* WorkSection */
+  .work-section-inner { padding-left: 24px !important; padding-right: 24px !important; }
+  .work-grid {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: repeat(4, 220px) !important;
+  }
+  .work-grid > * {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+
+  /* InterludeSection */
+  .interlude-section { padding-top: 40px !important; padding-bottom: 40px !important; }
+  .interlude-section .interlude-inner { padding-left: 24px !important; padding-right: 24px !important; }
+  .interlude-quote { font-size: 22px !important; white-space: normal !important; }
+
+  /* ContactSection */
+  .contact-section-inner { padding-left: 24px !important; padding-right: 24px !important; padding-top: 60px !important; padding-bottom: 60px !important; }
+
+  /* Travail page */
+  .travail-header { padding-left: 24px !important; padding-right: 24px !important; }
+  .travail-h1 { font-size: 36px !important; letter-spacing: -1px !important; }
+  .travail-featured-section { padding-left: 24px !important; padding-right: 24px !important; }
+  .travail-featured-img { height: 220px !important; }
+  .travail-grid-section {
+    grid-template-columns: 1fr !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+
+  /* Projet individuel */
+  .projet-hero-wrap { padding-left: 24px !important; padding-right: 24px !important; }
+  .projet-hero { height: 260px !important; }
+  .projet-meta {
+    grid-template-columns: 1fr !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  .projet-corps {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  .projet-gallery { padding-left: 24px !important; padding-right: 24px !important; }
+  .gallery-row { grid-template-columns: 1fr !important; height: auto !important; }
+  .gallery-row > * { height: 200px !important; }
+
+  /* Formations */
+  .formations-header  { padding-left: 24px !important; padding-right: 24px !important; }
+  .formations-intro   { padding-left: 24px !important; padding-right: 24px !important; }
+  .formations-cards   { padding-left: 24px !important; padding-right: 24px !important; }
+  .formations-bandeau { padding-left: 24px !important; padding-right: 24px !important; }
+  .formation-card { flex-direction: column !important; gap: 20px !important; }
+  .formation-num  { display: none !important; }
+  .formation-cta  { flex-direction: row !important; align-items: center !important; justify-content: flex-end !important; align-self: stretch !important; min-width: unset !important; }
+
+  /* Contact page */
+  .contact-header { padding-left: 24px !important; padding-right: 24px !important; }
+  .contact-body   {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+
+  /* Footer */
+  .footer-inner {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 12px !important;
+    text-align: center !important;
+  }
+}

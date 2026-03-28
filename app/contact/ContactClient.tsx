@@ -150,7 +150,7 @@ export default function ContactClient() {
         {/* ── HEADER ── */}
         <section
           ref={headerRef}
-          className="mx-auto w-full"
+          className="contact-header mx-auto w-full"
           style={{
             maxWidth: 1100,
             paddingLeft: 44,
@@ -200,6 +200,7 @@ export default function ContactClient() {
         {/* ── BODY GRILLE ── */}
         <section
           className="mx-auto w-full"
+          className="contact-body"
           style={{
             maxWidth: 1100,
             paddingLeft: 44,

@@ -143,7 +143,7 @@ export default function TravailClient() {
         {/* ── PAGE HEADER ── */}
         <section
           ref={headerRef}
-          className="mx-auto w-full"
+          className="travail-header mx-auto w-full"
           style={{ maxWidth: 1100, paddingLeft: 44, paddingRight: 44, paddingTop: 56, paddingBottom: 56 }}
         >
           {/* Eyebrow */}
@@ -162,6 +162,7 @@ export default function TravailClient() {
 
           {/* Titre */}
           <h1
+            className="travail-h1"
             style={{
               fontSize: 52,
               letterSpacing: "-2px",
@@ -195,7 +196,7 @@ export default function TravailClient() {
         {/* ── FEATURED PROJECT ── */}
         <section
           ref={featuredRef}
-          className="mx-auto w-full"
+          className="travail-featured-section mx-auto w-full"
           style={{ maxWidth: 1100, paddingLeft: 44, paddingRight: 44, paddingBottom: 64 }}
         >
           <a
@@ -214,7 +215,7 @@ export default function TravailClient() {
           >
             {/* Image zone */}
             <div
-              className="relative w-full"
+              className="travail-featured-img relative w-full"
               style={{ height: 340, backgroundColor: "#0b1018" }}
             >
               {featured.image && !imgErrors.has("featured") && (
@@ -314,7 +315,7 @@ export default function TravailClient() {
         {/* ── GRID 2 COLONNES ── */}
         <section
           ref={gridRef}
-          className="mx-auto w-full"
+          className="travail-grid-section mx-auto w-full"
           style={{
             maxWidth: 1100,
             paddingLeft: 44,

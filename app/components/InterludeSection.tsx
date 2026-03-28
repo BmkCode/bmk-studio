@@ -25,7 +25,7 @@ export default function InterludeSection() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden text-center" style={{ paddingTop: 56, paddingBottom: 56 }}>
+    <section className="interlude-section relative overflow-hidden text-center" style={{ paddingTop: 56, paddingBottom: 56 }}>
       {/* Golden halo */}
       <div
         className="pointer-events-none absolute inset-0"
@@ -38,13 +38,14 @@ export default function InterludeSection() {
 
       {/* Conteneur centré 1100px */}
       <div
-        className="relative mx-auto w-full"
+        className="interlude-inner relative mx-auto w-full"
         style={{ maxWidth: 1100, paddingLeft: 44, paddingRight: 44 }}
       >
         <blockquote ref={quoteRef} className="mx-auto" style={{ maxWidth: "none" }}>
           {/* Citation en Mea Culpa — "photographie" en accroche dorée */}
           <p
             className="font-meaculpa italic leading-snug text-bmk-text/80"
+            className="interlude-quote"
             style={{ fontSize: 38, whiteSpace: "nowrap" }}
           >
             «&nbsp;Ce que l&apos;œil humain ne voit pas, la{" "}
