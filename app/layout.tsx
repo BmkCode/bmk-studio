@@ -62,6 +62,11 @@ export const metadata: Metadata = {
     images: ["/og-image.jpg"]
   },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
+  icons: {
+    icon: "/PJ_437_Logo-01.svg",
+    shortcut: "/PJ_437_Logo-01.svg",
+    apple: "/PJ_437_Logo-01.svg",
+  },
   alternates: {
     canonical: "https://bmkstudio.be",
     languages: { "fr-BE": "https://bmkstudio.be", "en": "https://bmkstudio.be/en" }

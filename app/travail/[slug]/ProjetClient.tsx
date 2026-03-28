@@ -348,6 +348,7 @@ export default function ProjetClient() {
   const [lbIncoming, setLbIncoming] = useState<number | null>(null);
   const [lbDir, setLbDir] = useState<1 | -1>(1);
   const [lbTransitioning, setLbTransitioning] = useState(false);
+  const [lbIncomingLoaded, setLbIncomingLoaded] = useState(false);
 
   const imgs = projet?.images ?? [];
   const total = imgs.length;
@@ -356,6 +357,7 @@ export default function ProjetClient() {
     setLbCurrent(i);
     setLbIncoming(null);
     setLbTransitioning(false);
+    setLbIncomingLoaded(false);
     setLbOpen(true);
   }, []);
 
@@ -363,28 +365,41 @@ export default function ProjetClient() {
     setLbOpen(false);
     setLbIncoming(null);
     setLbTransitioning(false);
+    setLbIncomingLoaded(false);
   }, []);
 
   const navigate = useCallback((dir: 1 | -1) => {
     if (lbIncoming !== null) return;
     const next = (lbCurrent + dir + total) % total;
     setLbDir(dir);
-    setLbIncoming(next);
+    setLbIncomingLoaded(false);
     setLbTransitioning(false);
-    setTimeout(() => {
-      setLbCurrent(next);
-      setLbIncoming(null);
-      setLbTransitioning(false);
-    }, 380);
+    setLbIncoming(next);
   }, [lbCurrent, lbIncoming, total]);
 
-  // Trigger slide transition on next frame after incoming is set
+  // Précharge les images prev/next dès que lbCurrent change
   useEffect(() => {
-    if (lbIncoming !== null && !lbTransitioning) {
-      const raf = requestAnimationFrame(() => setLbTransitioning(true));
-      return () => cancelAnimationFrame(raf);
-    }
-  }, [lbIncoming, lbTransitioning]);
+    if (!lbOpen || total === 0) return;
+    [(lbCurrent + 1) % total, (lbCurrent - 1 + total) % total].forEach(i => {
+      if (imgs[i]) {
+        const img = new window.Image();
+        img.src = imgs[i];
+      }
+    });
+  }, [lbCurrent, lbOpen, imgs, total]);
+
+  // Lance la transition slide une fois l'image entrante chargée
+  useEffect(() => {
+    if (lbIncoming === null || !lbIncomingLoaded || lbTransitioning) return;
+    setLbTransitioning(true);
+    const t = setTimeout(() => {
+      setLbCurrent(lbIncoming);
+      setLbIncoming(null);
+      setLbTransitioning(false);
+      setLbIncomingLoaded(false);
+    }, 500);
+    return () => clearTimeout(t);
+  }, [lbIncoming, lbIncomingLoaded, lbTransitioning]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -811,13 +826,22 @@ export default function ProjetClient() {
                     : "none",
                 }}
               >
+                {/* Placeholder sombre pendant le chargement */}
+                {!lbIncomingLoaded && (
+                  <div
+                    className="absolute inset-0"
+                    style={{ backgroundColor: "#090d13" }}
+                  />
+                )}
                 {imgs[lbIncoming] && (
                   <Image
                     src={imgs[lbIncoming]}
                     alt={galleryAlt}
                     fill
+                    priority
                     style={{ objectFit: "contain" }}
                     sizes="min(90vw, 1000px)"
+                    onLoad={() => setLbIncomingLoaded(true)}
                   />
                 )}
               </div>

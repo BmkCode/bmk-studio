@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1200 1200" style="enable-background:new 0 0 1200 1200;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#1B1C1E;}
+	.st1{fill:url(#SVGID_1_);}
+	.st2{fill:url(#SVGID_2_);}
+</style>
+<rect x="-179.41" y="-155.48" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1200 1200)" class="st0" width="1558.81" height="1510.97"/>
+<g>
+	<g>
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="385.159" y1="182.3081" x2="385.159" y2="426.1007">
+			<stop  offset="0" style="stop-color:#EAC981"/>
+			<stop  offset="0" style="stop-color:#E4B95E"/>
+			<stop  offset="0.2279" style="stop-color:#FBF7D1"/>
+			<stop  offset="0.414" style="stop-color:#E1B753"/>
+			<stop  offset="0.586" style="stop-color:#F3C86C"/>
+			<stop  offset="0.7721" style="stop-color:#CE9E25"/>
+			<stop  offset="1" style="stop-color:#C1973B"/>
+		</linearGradient>
+		<polygon class="st1" points="342.15,338.18 406.42,426.1 535.85,426.1 358.51,182.31 234.47,182.31 234.47,422.35 342.15,422.35 
+					"/>
+		<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="600" y1="182.3081" x2="600" y2="1017.6919">
+			<stop  offset="0" style="stop-color:#EAC981"/>
+			<stop  offset="0" style="stop-color:#E4B95E"/>
+			<stop  offset="0.2279" style="stop-color:#FBF7D1"/>
+			<stop  offset="0.414" style="stop-color:#E1B753"/>
+			<stop  offset="0.586" style="stop-color:#F3C86C"/>
+			<stop  offset="0.7721" style="stop-color:#CE9E25"/>
+			<stop  offset="1" style="stop-color:#C1973B"/>
+		</linearGradient>
+		<path class="st2" d="M839.14,748.95l-24.67-25.83l24.67-26.58l229.07-246.79v-3.2H934.43l-95.28,105.98V182.31H715.92
+			L538.58,426.1h56.71c7.57,0,13.63,6.07,13.63,13.63v62.64L731.39,339v330h-136.1V439.7c-89.76,0-180.34,0-270.91,0
+			c-112.61,0-196.66,50.59-196.66,165.65c0,44.06,21.22,86.49,74.25,110.16c-66.91,20.4-91.39,91.39-91.39,127.28
+			c0,127.31,95.47,168.1,213.8,168.1c90.57,0,180.33,0,270.91,0V763.11h136.57l231.39,254.58h126.16v-6.47L839.14,748.95z
+			 M324.38,537.62h163.57l1.26,1.72v129.65H324.38c-67.73,0-89.76-28.56-89.76-61.2C234.62,581.68,255.84,537.62,324.38,537.62z
+			 M489.21,910.53H324.38c-44.07,0-106.9-14.68-106.9-68.54c0-51.41,62.83-78.33,106.9-78.33h164.83V910.53z"/>
+	</g>
+</g>
+</svg>
