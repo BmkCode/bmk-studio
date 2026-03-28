@@ -45,7 +45,7 @@ const projects = [
       "Une éternelle histoire de coiffure — capturer le geste, la matière, l'énergie d'un salon qui vit.",
     meta: "12 visuels",
     year: null,
-    image: "/images/frange/Frange (11).jpg",
+    image: "/images/frange/Frange (1).JPG",
   },
   {
     slug: "restaurant-2",

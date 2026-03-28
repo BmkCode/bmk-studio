@@ -32,7 +32,7 @@ const projects = [
     slug: "frange",
     name: "Frange",
     category: "Coiffure",
-    image: "/images/frange/Frange (11).jpg",
+    image: "/images/frange/Frange (1).JPG",
     style: { gridColumn: "1 / span 2", gridRow: "3" },
   },
 ];

@@ -24,7 +24,7 @@ const projectsMeta = {
     nom: "Frange",
     categorie: "Photo",
     pitch: "Une éternelle histoire de coiffure — capturer le geste, la matière, l'énergie d'un salon qui vit.",
-    images: ["/images/frange/Frange (11).jpg"],
+    images: ["/images/frange/Frange (1).JPG"],
   },
   "restaurant-2": {
     nom: "Restaurant 2",
