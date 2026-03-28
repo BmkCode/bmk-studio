@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-bmk-bg: #090d13;
+  --color-bmk-accent: #ffb400;
+  --color-bmk-accent-2: #d4a843;
+  --color-bmk-text: #dde2ec;
+
+  /* Fonts — CSS variables injected on <html> by next/font */
+--font-archivo: var(--font-archivo-var);
+--font-meaculpa: var(--font-meaculpa-var);
+--font-inter: var(--font-inter-var);
+
+  /* Custom animations */
+  --animate-ping-slow: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  --animate-halo: halo-breathe 4s ease-in-out infinite;
+}
+
+@keyframes ping-slow {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  80%, 100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+@keyframes halo-breathe {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background-color: #090d13;
+  color: #dde2ec;
+}
