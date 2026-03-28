@@ -368,6 +368,14 @@ export default function ProjetClient() {
     setLbIncomingLoaded(false);
   }, []);
 
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
   const navigate = useCallback((dir: 1 | -1) => {
     if (lbIncoming !== null) return;
     const next = (lbCurrent + dir + total) % total;
@@ -773,22 +781,31 @@ export default function ProjetClient() {
             {lbCurrent + 1} / {total}
           </span>
 
-          {/* Flèche gauche */}
-          <button
-            onClick={(e) => { e.stopPropagation(); navigate(-1); }}
-            style={{ ...ctrlStyle, position: "absolute", left: 24, top: "50%", transform: "translateY(-50%)" }}
-            onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(255,180,0,0.6)")}
-            onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(255,180,0,0.3)")}
-            aria-label="Précédent"
-          >
-            ←
-          </button>
+          {/* Flèche gauche — desktop uniquement */}
+          {!isMobile && (
+            <button
+              onClick={(e) => { e.stopPropagation(); navigate(-1); }}
+              style={{ ...ctrlStyle, position: "absolute", left: 24, top: "50%", transform: "translateY(-50%)" }}
+              onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(255,180,0,0.6)")}
+              onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(255,180,0,0.3)")}
+              aria-label="Précédent"
+            >
+              ←
+            </button>
+          )}
 
           {/* Zone image avec slide */}
           <div
             className="relative overflow-hidden"
             style={{ width: "min(90vw, 1000px)", height: "min(80vh, 700px)" }}
             onClick={(e) => e.stopPropagation()}
+            onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
+            onTouchEnd={(e) => {
+              touchEndX.current = e.changedTouches[0].clientX;
+              const diff = touchStartX.current - touchEndX.current;
+              if (diff > 50) navigate(1);
+              if (diff < -50) navigate(-1);
+            }}
           >
             {/* Image courante (sortante lors de la transition) */}
             <div
@@ -848,16 +865,44 @@ export default function ProjetClient() {
             )}
           </div>
 
-          {/* Flèche droite */}
-          <button
-            onClick={(e) => { e.stopPropagation(); navigate(1); }}
-            style={{ ...ctrlStyle, position: "absolute", right: 24, top: "50%", transform: "translateY(-50%)" }}
-            onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(255,180,0,0.6)")}
-            onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(255,180,0,0.3)")}
-            aria-label="Suivant"
-          >
-            →
-          </button>
+          {/* Flèche droite — desktop uniquement */}
+          {!isMobile && (
+            <button
+              onClick={(e) => { e.stopPropagation(); navigate(1); }}
+              style={{ ...ctrlStyle, position: "absolute", right: 24, top: "50%", transform: "translateY(-50%)" }}
+              onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(255,180,0,0.6)")}
+              onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(255,180,0,0.3)")}
+              aria-label="Suivant"
+            >
+              →
+            </button>
+          )}
+
+          {/* Indicateur dots — mobile uniquement */}
+          {isMobile && (
+            <div
+              style={{
+                position: "absolute",
+                bottom: 20,
+                left: "50%",
+                transform: "translateX(-50%)",
+                display: "flex",
+                gap: 6,
+              }}
+            >
+              {imgs.map((_, i) => (
+                <div
+                  key={i}
+                  style={{
+                    width: 6,
+                    height: 6,
+                    borderRadius: "50%",
+                    backgroundColor: i === lbCurrent ? "#ffb400" : "rgba(255,255,255,0.3)",
+                  }}
+                />
+              ))}
+            </div>
+          )}
         </div>
       )}
     </>
