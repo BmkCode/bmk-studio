@@ -63,7 +63,9 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
   icons: {
-    icon: "/PJ_437_Logo-01.svg",
+    icon: [
+      { url: "/PJ_437_Logo-01.svg", type: "image/svg+xml" },
+    ],
     shortcut: "/PJ_437_Logo-01.svg",
     apple: "/PJ_437_Logo-01.svg",
   },
