@@ -44,8 +44,7 @@ export default function InterludeSection() {
         <blockquote ref={quoteRef} className="mx-auto" style={{ maxWidth: "none" }}>
           {/* Citation en Mea Culpa — "photographie" en accroche dorée */}
           <p
-            className="font-meaculpa italic leading-snug text-bmk-text/80 interlude-quote"
-            style={{ fontSize: 38, whiteSpace: "nowrap" }}
+className="font-meaculpa italic leading-snug text-bmk-text/80 interlude-quote"
           >
             «&nbsp;Ce que l&apos;œil humain ne voit pas, la{" "}
             <span
