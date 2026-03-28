@@ -25,7 +25,7 @@ const projects = [
     slug: "nutfully",
     name: "Nutfully",
     category: "Fruits secs",
-    image: "/images/nutfully/Nutfully-1.jpg",
+    image: "/images/nutfully/Nutfully-5.jpg",
     style: { gridColumn: "2", gridRow: "2" },
   },
   {
