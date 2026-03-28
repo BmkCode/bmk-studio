@@ -6,8 +6,10 @@ import WorkSection from "./components/WorkSection";
 import InterludeSection from "./components/InterludeSection";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
+import { useIsMobile } from "./hooks/useIsMobile";
 
 export default function Home() {
+  const isMobile = useIsMobile();
   const h1Ref = useRef<HTMLDivElement>(null);
   const acrocheRef = useRef<HTMLDivElement>(null);
   const subtitleRef = useRef<HTMLDivElement>(null);
@@ -44,7 +46,7 @@ export default function Home() {
         {/* Left content column */}
         <div
           className="hero-left-col relative flex flex-col justify-center"
-          style={{ maxWidth: "calc(100% - 310px)" }}
+          style={isMobile ? { maxWidth: "100%", width: "100%", padding: "0 24px" } : { maxWidth: "calc(100% - 310px)" }}
         >
           {/* Pulsing location badge */}
           <div className="mb-8 flex items-center gap-3">
@@ -61,7 +63,11 @@ export default function Home() {
           <div ref={h1Ref}>
             <h1
               className="hero-h1 font-archivo leading-[1.1] text-bmk-text"
-              style={{
+              style={isMobile ? {
+                fontSize: 28,
+                letterSpacing: 0,
+                display: "inline-block",
+              } : {
                 fontSize: 45,
                 letterSpacing: "-2px",
                 display: "inline-block",
@@ -76,11 +82,11 @@ export default function Home() {
           <div ref={acrocheRef} className="hero-accroche">
             <p
               className="mt-2 text-bmk-accent"
-              style={{ fontSize: 55 }}
+              style={{ fontSize: isMobile ? 28 : 55 }}
             >
               <span
                 className="font-archivo"
-                style={{ display: "inline-block", transform: "scaleY(1.15)" }}
+                style={isMobile ? { display: "inline-block" } : { display: "inline-block", transform: "scaleY(1.15)" }}
               >
                 Bmk
               </span>
@@ -132,7 +138,7 @@ export default function Home() {
         </div>
 
         {/* Right panel */}
-        <div
+        {!isMobile && <div
           className="hero-right-panel absolute bottom-0 right-0 top-0"
           aria-hidden
           style={{
@@ -147,7 +153,7 @@ export default function Home() {
               background: "linear-gradient(to right, transparent 0%, #0b1018 100%)",
             }}
           />
-        </div>
+        </div>}
 
         {/* Bottom fade */}
         <div

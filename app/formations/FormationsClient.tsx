@@ -4,6 +4,7 @@ import { useRef, useEffect } from "react";
 import Footer from "../components/Footer";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 const formations = [
   {
@@ -45,6 +46,7 @@ const formations = [
 ];
 
 export default function FormationsClient() {
+  const isMobile = useIsMobile();
   const headerRef = useRef<HTMLElement>(null);
   const introRef = useRef<HTMLElement>(null);
   const cardsRef = useRef<HTMLElement>(null);
@@ -210,7 +212,9 @@ export default function FormationsClient() {
                 border: "1px solid rgba(255,255,255,0.05)",
                 borderRadius: 8,
                 backgroundColor: "#0b1018",
-                padding: "32px 36px",
+                padding: isMobile ? "24px 20px" : "32px 36px",
+                flexDirection: isMobile ? "column" : "row",
+                gap: isMobile ? 16 : 32,
               }}
             >
               {/* Numéro */}
@@ -221,7 +225,7 @@ export default function FormationsClient() {
                   color: "rgba(212,168,67,0.35)",
                   lineHeight: 1,
                   flexShrink: 0,
-                  width: 48,
+                  width: isMobile ? "auto" : 48,
                 }}
               >
                 {f.num}
@@ -267,10 +271,15 @@ export default function FormationsClient() {
 
               {/* CTA */}
               <div
-                className="formation-cta flex flex-shrink-0 flex-col items-end justify-between self-stretch"
-                style={{ minWidth: 160 }}
+                className="formation-cta flex flex-shrink-0 flex-col justify-between self-stretch"
+                style={{
+                  minWidth: isMobile ? "auto" : 160,
+                  width: isMobile ? "100%" : "auto",
+                  alignItems: isMobile ? "flex-start" : "flex-end",
+                  gap: isMobile ? 12 : 0,
+                }}
               >
-                <div className="flex flex-col items-end gap-1">
+                <div className="flex flex-col gap-1" style={{ alignItems: isMobile ? "flex-start" : "flex-end" }}>
                   <span
                     className="font-inter font-light text-bmk-text/30"
                     style={{ fontSize: 11 }}
@@ -286,8 +295,8 @@ export default function FormationsClient() {
                 </div>
                 <a
                   href="/contact"
-                  className="inline-flex h-10 items-center justify-center bg-bmk-accent px-6 font-inter text-xs font-light uppercase tracking-widest text-bmk-bg transition-all duration-300 hover:bg-bmk-accent-2 hover:shadow-[0_0_24px_rgba(255,180,0,0.35)]"
-                  style={{ borderRadius: 6 }}
+                  className="inline-flex h-10 items-center justify-center bg-bmk-accent font-inter text-xs font-light uppercase tracking-widest text-bmk-bg transition-all duration-300 hover:bg-bmk-accent-2 hover:shadow-[0_0_24px_rgba(255,180,0,0.35)]"
+                  style={{ borderRadius: 6, width: isMobile ? "100%" : "auto", padding: isMobile ? "0" : "0 24px" }}
                 >
                   S&apos;inscrire
                 </a>

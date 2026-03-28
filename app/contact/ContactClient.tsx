@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import Footer from "../components/Footer";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 const services = ["Photo produit", "Vidéo", "Formation", "Autre"] as const;
 
@@ -56,6 +57,7 @@ function validate(nom: string, email: string, message: string) {
 }
 
 export default function ContactClient() {
+  const isMobile = useIsMobile();
   const [selected, setSelected] = useState<string>("Photo produit");
   const [hoveredService, setHoveredService] = useState<string | null>(null);
   const [hoveredSocial, setHoveredSocial] = useState<string | null>(null);
@@ -153,10 +155,10 @@ export default function ContactClient() {
           className="contact-header mx-auto w-full"
           style={{
             maxWidth: 1100,
-            paddingLeft: 44,
-            paddingRight: 44,
-            paddingTop: 56,
-            paddingBottom: 56,
+            paddingLeft: isMobile ? 24 : 44,
+            paddingRight: isMobile ? 24 : 44,
+            paddingTop: isMobile ? 32 : 56,
+            paddingBottom: isMobile ? 32 : 56,
           }}
         >
           {/* Eyebrow */}
@@ -175,7 +177,12 @@ export default function ContactClient() {
 
           {/* Titre */}
           <h1
-            style={{
+            style={isMobile ? {
+              fontSize: 32,
+              letterSpacing: 0,
+              lineHeight: 1.1,
+              display: "inline-block",
+            } : {
               fontSize: 52,
               letterSpacing: "-2px",
               lineHeight: 1.1,
@@ -199,16 +206,15 @@ export default function ContactClient() {
 
         {/* ── BODY GRILLE ── */}
         <section
-          className="mx-auto w-full"
-          className="contact-body"
+          className="mx-auto w-full contact-body"
           style={{
             maxWidth: 1100,
-            paddingLeft: 44,
-            paddingRight: 44,
+            paddingLeft: isMobile ? 24 : 44,
+            paddingRight: isMobile ? 24 : 44,
             paddingBottom: 80,
             display: "grid",
-            gridTemplateColumns: "1fr 1.2fr",
-            gap: 56,
+            gridTemplateColumns: isMobile ? "1fr" : "1fr 1.2fr",
+            gap: isMobile ? 40 : 56,
             alignItems: "start",
           }}
         >
