@@ -345,27 +345,17 @@ export default function ProjetClient() {
   // Lightbox state
   const [lbOpen, setLbOpen] = useState(false);
   const [lbCurrent, setLbCurrent] = useState(0);
-  const [lbIncoming, setLbIncoming] = useState<number | null>(null);
-  const [lbDir, setLbDir] = useState<1 | -1>(1);
-  const [lbTransitioning, setLbTransitioning] = useState(false);
-  const [lbIncomingLoaded, setLbIncomingLoaded] = useState(false);
 
   const imgs = projet?.images ?? [];
   const total = imgs.length;
 
   const openLightbox = useCallback((i: number) => {
     setLbCurrent(i);
-    setLbIncoming(null);
-    setLbTransitioning(false);
-    setLbIncomingLoaded(false);
     setLbOpen(true);
   }, []);
 
   const closeLightbox = useCallback(() => {
     setLbOpen(false);
-    setLbIncoming(null);
-    setLbTransitioning(false);
-    setLbIncomingLoaded(false);
   }, []);
 
   const touchStartX = useRef(0);
@@ -377,36 +367,8 @@ export default function ProjetClient() {
   }, []);
 
   const navigate = useCallback((dir: 1 | -1) => {
-    const next = (lbCurrent + dir + total) % total;
-    setLbDir(dir);
-    setLbIncomingLoaded(false);
-    setLbTransitioning(false);
-    setLbIncoming(next);
-  }, [lbCurrent, total]);
-
-  // Précharge les images prev/next dès que lbCurrent change
-  useEffect(() => {
-    if (!lbOpen || total === 0) return;
-    [(lbCurrent + 1) % total, (lbCurrent - 1 + total) % total].forEach(i => {
-      if (imgs[i]) {
-        const img = new window.Image();
-        img.src = imgs[i];
-      }
-    });
-  }, [lbCurrent, lbOpen, imgs, total]);
-
-  // Lance la transition slide une fois l'image entrante chargée
-  useEffect(() => {
-    if (lbIncoming === null || !lbIncomingLoaded || lbTransitioning) return;
-    setLbTransitioning(true);
-    const t = setTimeout(() => {
-      setLbCurrent(lbIncoming);
-      setLbIncoming(null);
-      setLbTransitioning(false);
-      setLbIncomingLoaded(false);
-    }, 250);
-    return () => clearTimeout(t);
-  }, [lbIncoming, lbIncomingLoaded, lbTransitioning]);
+    setLbCurrent((prev) => (prev + dir + total) % total);
+  }, [total]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -793,9 +755,9 @@ export default function ProjetClient() {
             </button>
           )}
 
-          {/* Zone image avec slide */}
+          {/* Zone image */}
           <div
-            className="relative overflow-hidden"
+            className="relative"
             style={{ width: "min(90vw, 1000px)", height: "min(80vh, 700px)" }}
             onClick={(e) => e.stopPropagation()}
             onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
@@ -806,61 +768,15 @@ export default function ProjetClient() {
               else if (diff < -50) { touchStartX.current = 0; navigate(-1); }
             }}
           >
-            {/* Image courante (sortante lors de la transition) */}
-            <div
-              className="absolute inset-0"
-              style={{
-                transform: lbTransitioning
-                  ? `translateX(${lbDir === 1 ? "-100%" : "100%"})`
-                  : "translateX(0)",
-                transition: lbTransitioning
-                  ? "transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)"
-                  : "none",
-              }}
-            >
-              {imgs[lbCurrent] && (
-                <Image
-                  src={imgs[lbCurrent]}
-                  alt={galleryAlt}
-                  fill
-                  style={{ objectFit: "contain" }}
-                  sizes="min(90vw, 1000px)"
-                />
-              )}
-            </div>
-
-            {/* Image entrante (seulement pendant la transition) */}
-            {lbIncoming !== null && (
-              <div
-                className="absolute inset-0"
-                style={{
-                  transform: lbTransitioning
-                    ? "translateX(0)"
-                    : `translateX(${lbDir === 1 ? "100%" : "-100%"})`,
-                  transition: lbTransitioning
-                    ? "transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)"
-                    : "none",
-                }}
-              >
-                {/* Placeholder sombre pendant le chargement */}
-                {!lbIncomingLoaded && (
-                  <div
-                    className="absolute inset-0"
-                    style={{ backgroundColor: "#090d13" }}
-                  />
-                )}
-                {imgs[lbIncoming] && (
-                  <Image
-                    src={imgs[lbIncoming]}
-                    alt={galleryAlt}
-                    fill
-                    priority
-                    style={{ objectFit: "contain" }}
-                    sizes="min(90vw, 1000px)"
-                    onLoad={() => setLbIncomingLoaded(true)}
-                  />
-                )}
-              </div>
+            {imgs[lbCurrent] && (
+              <Image
+                key={lbCurrent}
+                src={imgs[lbCurrent]}
+                alt={galleryAlt}
+                fill
+                style={{ objectFit: "contain", transition: "opacity 0.3s ease" }}
+                sizes="min(90vw, 1000px)"
+              />
             )}
           </div>
 
