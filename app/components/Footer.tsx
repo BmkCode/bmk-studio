@@ -1,4 +1,10 @@
-export default function Footer() {
+import { translations, type Translations } from "../../lib/translations";
+
+export default function Footer({
+  t = translations.fr,
+}: {
+  t?: Translations;
+}) {
   return (
     <footer style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
       {/* Conteneur centré 1100px */}
@@ -16,7 +22,7 @@ export default function Footer() {
           className="font-inter font-light"
           style={{ fontSize: 9, color: "rgba(221,226,236,0.25)" }}
         >
-          © 2026 BMK Studio — Bruxelles
+          {t.footer.copy}
         </span>
 
         <nav className="flex items-center gap-8" aria-label="Réseaux sociaux">

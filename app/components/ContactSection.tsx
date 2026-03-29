@@ -3,8 +3,15 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { translations, type Translations } from "../../lib/translations";
 
-export default function ContactSection() {
+export default function ContactSection({
+  t = translations.fr,
+  basePath = "",
+}: {
+  t?: Translations;
+  basePath?: string;
+}) {
   const titleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -45,15 +52,13 @@ export default function ContactSection() {
         style={{ maxWidth: 1100, paddingLeft: 44, paddingRight: 44 }}
       >
         <div ref={titleRef}>
-          {/* Eyebrow — Archivo Black 9px uppercase */}
           <p
             className="mb-6 font-archivo uppercase tracking-widest"
             style={{ fontSize: 9, color: "rgba(255,180,0,0.35)" }}
           >
-            Démarrons ensemble
+            {t.contact_section.eyebrow}
           </p>
 
-          {/* h2 — "Un projet en" Archivo Black + scaleY, "lumière ?" Mea Culpa */}
           <h2 className="leading-[1.05] tracking-tight">
             <span
               className="block font-archivo text-bmk-text"
@@ -63,7 +68,7 @@ export default function ContactSection() {
                 transform: "scaleY(1.15)",
               }}
             >
-              Un projet en
+              {t.contact_section.title}
             </span>
              {" "} {" "}
             <span
@@ -75,22 +80,20 @@ export default function ContactSection() {
                   "0 0 40px rgba(255,180,0,0.5), 0 0 80px rgba(255,180,0,0.2), 0 0 120px rgba(255,180,0,0.08)",
               }}
             >
-              lumière&nbsp;?
+              {t.contact_section.title_em}
             </span>
           </h2>
 
-          {/* Sous-titre — Inter light */}
           <p
             className="mx-auto mt-6 font-inter font-light text-bmk-text/45"
             style={{ fontSize: 13, letterSpacing: "0.06em", maxWidth: 440 }}
           >
-            Devis gratuit · Réponse sous 48h · Belgique &amp; international
+            {t.contact_section.subtitle}
           </p>
 
-          {/* CTA */}
           <div className="mt-10">
             <a
-              href="/contact"
+              href={`${basePath}/contact`}
               className="inline-flex h-12 items-center justify-center px-10 font-inter font-light tracking-widest transition-all duration-300 hover:shadow-[0_0_32px_rgba(255,180,0,0.4)]"
               style={{
                 borderRadius: 8,
@@ -99,7 +102,7 @@ export default function ContactSection() {
                 color: "#090d13",
               }}
             >
-              Démarrer un projet
+              {t.contact_section.cta}
             </a>
           </div>
         </div>

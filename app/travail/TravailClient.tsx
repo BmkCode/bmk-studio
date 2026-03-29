@@ -5,6 +5,7 @@ import Image from "next/image";
 import Footer from "../components/Footer";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { translations, type Translations } from "../../lib/translations";
 
 const featured = {
   slug: "le-restaurant",
@@ -91,7 +92,13 @@ function TagList({ tags }: { tags: string[] }) {
   );
 }
 
-export default function TravailClient() {
+export default function TravailClient({
+  t = translations.fr,
+  basePath = "",
+}: {
+  t?: Translations;
+  basePath?: string;
+}) {
   const [featuredHover, setFeaturedHover] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [imgErrors, setImgErrors] = useState<Set<string>>(new Set());
@@ -156,7 +163,7 @@ export default function TravailClient() {
               className="font-inter font-light uppercase tracking-[0.22em] text-bmk-text/50"
               style={{ fontSize: 9 }}
             >
-              Portfolio Bmk Studio
+              {t.travail.eyebrow}
             </span>
           </div>
 
@@ -171,7 +178,7 @@ export default function TravailClient() {
               transform: "scaleY(1.15)",
             }}
           >
-            <span className="font-archivo text-bmk-text">Le travail </span>
+            <span className="font-archivo text-bmk-text">{t.travail.title}{" "}</span>
             <span
               className="font-meaculpa italic"
               style={{
@@ -180,7 +187,7 @@ export default function TravailClient() {
                   "0 0 28px rgba(255,180,0,0.35), 0 0 56px rgba(255,180,0,0.12)",
               }}
             >
-              parle.
+              {t.travail.title_em}
             </span>
           </h1>
 
@@ -189,7 +196,7 @@ export default function TravailClient() {
             className="mt-8 font-inter font-light leading-relaxed text-bmk-text/55"
             style={{ maxWidth: 420, fontSize: 15 }}
           >
-            Une sélection de projets photo et vidéo pour artisans, marques et créateurs.
+            {t.travail.subtitle}
           </p>
         </section>
 
@@ -200,7 +207,7 @@ export default function TravailClient() {
           style={{ maxWidth: 1100, paddingLeft: 44, paddingRight: 44, paddingBottom: 64 }}
         >
           <a
-            href={`/travail/${featured.slug}`}
+            href={`${basePath}/travail/${featured.slug}`}
             className="group block"
             style={{
               position: "relative",
@@ -305,7 +312,7 @@ export default function TravailClient() {
                   className="font-inter font-light uppercase tracking-widest text-bmk-accent transition-all duration-300 group-hover:text-bmk-accent-2"
                   style={{ fontSize: 11 }}
                 >
-                  Voir le projet →
+                  {t.travail.featured_cta}
                 </span>
               </div>
             </div>
@@ -329,7 +336,7 @@ export default function TravailClient() {
           {projects.map((p) => (
             <a
               key={p.slug}
-              href={`/travail/${p.slug}`}
+              href={`${basePath}/travail/${p.slug}`}
               className="group flex flex-col"
               style={{
                 position: "relative",
@@ -436,7 +443,7 @@ export default function TravailClient() {
                   className="font-inter font-light uppercase tracking-widest text-bmk-text/30 transition-colors duration-300 group-hover:text-bmk-accent"
                   style={{ fontSize: 9 }}
                 >
-                  Voir le projet →
+                  {t.travail.featured_cta}
                 </span>
               </div>
             </a>
@@ -444,7 +451,7 @@ export default function TravailClient() {
         </section>
       </main>
 
-      <Footer />
+      <Footer t={t} />
     </>
   );
 }

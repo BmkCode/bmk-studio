@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { translations, type Translations } from "../../lib/translations";
 
 const projects = [
   {
@@ -43,12 +44,14 @@ function ProjectCard({
   image,
   slug,
   style,
+  basePath,
 }: {
   name: string;
   category: string;
   image: string | null;
   slug: string;
   style: React.CSSProperties;
+  basePath: string;
 }) {
   const [hovered, setHovered] = useState(false);
 
@@ -56,7 +59,7 @@ function ProjectCard({
 
   return (
     <Link
-      href={`/travail/${slug}`}
+      href={`${basePath}/travail/${slug}`}
       className="relative"
       style={{
         ...style,
@@ -150,7 +153,13 @@ function ProjectCard({
   );
 }
 
-export default function WorkSection() {
+export default function WorkSection({
+  t = translations.fr,
+  basePath = "",
+}: {
+  t?: Translations;
+  basePath?: string;
+}) {
   const headerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
@@ -203,11 +212,10 @@ export default function WorkSection() {
               className="font-archivo uppercase tracking-widest text-bmk-text/40"
               style={{ fontSize: 9 }}
             >
-              Travail sélectionné
+              {t.work.label}
             </span>
           </div>
 
-          {/* h2 — Archivo Black + scaleY, accroche en Mea Culpa */}
           <h2
             className="font-archivo leading-[1.1] tracking-tight text-bmk-text"
             style={{
@@ -216,7 +224,7 @@ export default function WorkSection() {
               transform: "scaleY(1.15)",
             }}
           >
-            La matière sous la{" "}
+            {t.work.title}{" "}
             <span
               className="font-meaculpa italic"
               style={{
@@ -227,13 +235,13 @@ export default function WorkSection() {
                 transform: "scaleY(1)",
               }}
             >
-              lumière
+              {t.work.title_em}
             </span>
             <span
               className="font-archivo"
               style={{ color: "#d4a843" }}
             >
-              {" "}BMK.
+              {" "}{t.work.title_end}
             </span>
           </h2>
         </div>
@@ -258,6 +266,7 @@ export default function WorkSection() {
               image={p.image}
               slug={p.slug}
               style={p.style}
+              basePath={basePath}
             />
           ))}
         </div>
@@ -265,14 +274,14 @@ export default function WorkSection() {
         {/* CTA */}
         <div className="mt-8 flex justify-center">
           <a
-            href="/travail"
+            href={`${basePath}/travail`}
             className="inline-flex h-11 items-center justify-center px-8 font-inter text-sm font-light tracking-widest text-bmk-text/70 transition-all duration-300 hover:text-bmk-accent"
             style={{
               borderRadius: 8,
               border: "1px solid rgba(255,180,0,0.18)",
             }}
           >
-            Voir tout le portfolio
+            {t.work.see_all}
           </a>
         </div>
       </div>

@@ -6,6 +6,7 @@ import Image from "next/image";
 import Footer from "../../components/Footer";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { translations, type Translations } from "../../../lib/translations";
 
 const projects: Record<string, {
   nom: string;
@@ -290,7 +291,13 @@ function ImageSlot({
   );
 }
 
-export default function ProjetClient() {
+export default function ProjetClient({
+  t = translations.fr,
+  basePath = "",
+}: {
+  t?: Translations;
+  basePath?: string;
+}) {
   const params = useParams();
   const slug = typeof params.slug === "string" ? params.slug : "";
   const projet = projects[slug];
@@ -396,17 +403,17 @@ export default function ProjetClient() {
           style={{ maxWidth: 1100, paddingLeft: 44, paddingRight: 44, paddingTop: 120, paddingBottom: 80 }}
         >
           <a
-            href="/travail"
+            href={`${basePath}/travail`}
             className="font-inter font-light uppercase tracking-widest text-bmk-text/30 transition-colors duration-200 hover:text-bmk-accent"
             style={{ fontSize: 9 }}
           >
-            ← Retour au portfolio
+            {t.projet.back}
           </a>
           <p className="mt-12 font-inter font-light text-bmk-text/40" style={{ fontSize: 15 }}>
             Projet introuvable.
           </p>
         </main>
-        <Footer />
+        <Footer t={t} />
       </>
     );
   }
@@ -462,13 +469,13 @@ export default function ProjetClient() {
           style={{ maxWidth: 1100, paddingLeft: 44, paddingRight: 44, paddingTop: 32, paddingBottom: 24 }}
         >
           <a
-            href="/travail"
+            href={`${basePath}/travail`}
             className="font-inter font-light uppercase tracking-widest text-bmk-text/30 transition-colors duration-200"
             style={{ fontSize: 9 }}
             onMouseEnter={(e) => (e.currentTarget.style.color = "#d4a843")}
             onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(221,226,236,0.3)")}
           >
-            ← Retour au portfolio
+            {t.projet.back}
           </a>
         </div>
 
@@ -531,9 +538,9 @@ export default function ProjetClient() {
           }}
         >
           {[
-            { label: "Mission", value: projet.categorie },
-            { label: "Livrables", value: projet.visuels },
-            { label: "Année", value: projet.annee },
+            { label: t.projet.mission, value: projet.categorie },
+            { label: t.projet.deliverables, value: projet.visuels },
+            { label: t.projet.year, value: projet.annee },
           ].map(({ label, value }) => (
             <div key={label} className="flex flex-col gap-1">
               <span
@@ -575,7 +582,7 @@ export default function ProjetClient() {
                 className="font-inter font-light uppercase tracking-[0.22em] text-bmk-text/40"
                 style={{ fontSize: 9 }}
               >
-                Le projet
+                {t.projet.label}
               </span>
             </div>
             <p className="font-inter font-light leading-snug text-bmk-text/75" style={{ fontSize: 15 }}>
@@ -647,14 +654,14 @@ export default function ProjetClient() {
           }}
         >
           <p className="font-meaculpa italic text-bmk-text/50" style={{ fontSize: 22 }}>
-            Un projet similaire ?
+            {t.projet.cta_text}
           </p>
           <a
-            href="/contact"
+            href={`${basePath}/contact`}
             className="inline-flex h-11 items-center justify-center bg-bmk-accent px-8 font-inter text-sm font-light tracking-widest text-bmk-bg transition-all duration-300 hover:bg-bmk-accent-2 hover:shadow-[0_0_28px_rgba(255,180,0,0.35)]"
             style={{ borderRadius: 8 }}
           >
-            Demander un devis
+            {t.projet.cta_btn}
           </a>
         </div>
 
@@ -676,12 +683,12 @@ export default function ProjetClient() {
           >
             <div>
               {precedentProjet && (
-                <a href={`/travail/${projet.precedent}`} className="group flex flex-col gap-1">
+                <a href={`${basePath}/travail/${projet.precedent}`} className="group flex flex-col gap-1">
                   <span
                     className="font-inter font-light uppercase tracking-widest text-bmk-text/25 transition-colors duration-200 group-hover:text-bmk-accent"
                     style={{ fontSize: 9 }}
                   >
-                    ← Projet précédent
+                    {t.projet.prev}
                   </span>
                   <span
                     className="font-archivo text-bmk-text/60 transition-colors duration-200 group-hover:text-bmk-text"
@@ -694,12 +701,12 @@ export default function ProjetClient() {
             </div>
             <div className="flex justify-end">
               {suivantProjet && (
-                <a href={`/travail/${projet.suivant}`} className="group flex flex-col items-end gap-1">
+                <a href={`${basePath}/travail/${projet.suivant}`} className="group flex flex-col items-end gap-1">
                   <span
                     className="font-inter font-light uppercase tracking-widest text-bmk-text/25 transition-colors duration-200 group-hover:text-bmk-accent"
                     style={{ fontSize: 9 }}
                   >
-                    Projet suivant →
+                    {t.projet.next}
                   </span>
                   <span
                     className="font-archivo text-bmk-text/60 transition-colors duration-200 group-hover:text-bmk-text"

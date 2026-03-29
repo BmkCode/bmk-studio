@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useIsMobile } from "../hooks/useIsMobile";
+import { translations, type Translations } from "../../lib/translations";
 
 const formations = [
   {
@@ -45,7 +46,13 @@ const formations = [
   },
 ];
 
-export default function FormationsClient() {
+export default function FormationsClient({
+  t = translations.fr,
+  basePath = "",
+}: {
+  t?: Translations;
+  basePath?: string;
+}) {
   const isMobile = useIsMobile();
   const headerRef = useRef<HTMLElement>(null);
   const introRef = useRef<HTMLElement>(null);
@@ -116,11 +123,11 @@ export default function FormationsClient() {
               className="font-inter font-light uppercase tracking-[0.22em] text-bmk-text/50"
               style={{ fontSize: 9 }}
             >
-              Formations Bmk Studio
+              {t.formations.eyebrow}
             </span>
           </div>
 
-          {/* Titre — même ligne */}
+          {/* Titre */}
           <h1
             style={{
               fontSize: 52,
@@ -130,7 +137,7 @@ export default function FormationsClient() {
               transform: "scaleY(1.15)",
             }}
           >
-            <span className="font-archivo text-bmk-text">Apprenez à voir </span>
+            <span className="font-archivo text-bmk-text">{t.formations.title}{" "}</span>
             <span
               className="font-meaculpa italic"
               style={{
@@ -139,7 +146,7 @@ export default function FormationsClient() {
                   "0 0 28px rgba(255,180,0,0.35), 0 0 56px rgba(255,180,0,0.12)",
               }}
             >
-              la lumière.
+              {t.formations.title_em}
             </span>
           </h1>
 
@@ -148,7 +155,7 @@ export default function FormationsClient() {
             className="mt-8 font-inter font-light leading-relaxed text-bmk-text/55"
             style={{ maxWidth: 480, fontSize: 15 }}
           >
-            Des ateliers terrain animés par les photographes du studio. Pratiques, intenses, pensés pour les créateurs et entrepreneurs.
+            {t.formations.subtitle}
           </p>
         </section>
 
@@ -185,7 +192,7 @@ export default function FormationsClient() {
               className="font-inter font-light leading-relaxed text-bmk-text/55"
               style={{ fontSize: 14, padding: "20px 28px" }}
             >
-              Toutes les formations se déroulent en petit groupe pour garantir un suivi personnalisé. Matériel professionnel fourni. Bruxelles &amp; déplacement possible.
+              {t.formations.intro}
             </p>
           </div>
         </section>
@@ -284,21 +291,21 @@ export default function FormationsClient() {
                     className="font-inter font-light text-bmk-text/30"
                     style={{ fontSize: 11 }}
                   >
-                    Sur devis
+                    {t.formations.price}
                   </span>
                   <span
                     className="font-inter font-light text-bmk-text/25"
                     style={{ fontSize: 10 }}
                   >
-                    Max 6 pers.
+                    {t.formations.max}
                   </span>
                 </div>
                 <a
-                  href="/contact"
+                  href={`${basePath}/contact`}
                   className="inline-flex h-10 items-center justify-center bg-bmk-accent font-inter text-xs font-light uppercase tracking-widest text-bmk-bg transition-all duration-300 hover:bg-bmk-accent-2 hover:shadow-[0_0_24px_rgba(255,180,0,0.35)]"
                   style={{ borderRadius: 6, width: isMobile ? "100%" : "auto", padding: isMobile ? "0" : "0 24px" }}
                 >
-                  S&apos;inscrire
+                  {t.formations.register}
                 </a>
               </div>
             </div>
@@ -336,26 +343,26 @@ export default function FormationsClient() {
                 marginBottom: 8,
               }}
             >
-              Formation sur mesure
+              {t.formations.custom_title}
             </h2>
             <p
               className="font-inter font-light leading-relaxed text-bmk-text/50"
               style={{ maxWidth: 440, fontSize: 15 }}
             >
-              Un besoin spécifique ? Bmk Studio conçoit des ateliers adaptés à votre secteur, votre équipe, votre niveau.
+              {t.formations.custom_text}
             </p>
             <a
-              href="/contact"
+              href={`${basePath}/contact`}
               className="inline-flex h-11 items-center justify-center bg-bmk-accent px-8 font-inter text-sm font-light tracking-widest text-bmk-bg transition-all duration-300 hover:bg-bmk-accent-2 hover:shadow-[0_0_28px_rgba(255,180,0,0.35)]"
               style={{ borderRadius: 8 }}
             >
-              Nous contacter
+              {t.formations.custom_cta}
             </a>
           </div>
         </section>
       </main>
 
-      <Footer />
+      <Footer t={t} />
     </>
   );
 }

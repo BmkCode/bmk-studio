@@ -1,66 +1,40 @@
 import type { MetadataRoute } from "next";
 
+const BASE = "https://bmkstudio.be";
+
+const slugs = [
+  "le-restaurant",
+  "qamees-place",
+  "nutfully",
+  "frange",
+  "restaurant-2",
+  "travaux-personnels",
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
-    {
-      url: "https://bmkstudio.be",
+    // ── FR ──
+    { url: `${BASE}`, lastModified: new Date(), changeFrequency: "monthly", priority: 1 },
+    { url: `${BASE}/travail`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
+    ...slugs.map((slug) => ({
+      url: `${BASE}/travail/${slug}`,
       lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 1,
-    },
-    {
-      url: "https://bmkstudio.be/travail",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://bmkstudio.be/travail/le-restaurant",
-      lastModified: new Date(),
-      changeFrequency: "yearly",
+      changeFrequency: "yearly" as const,
       priority: 0.7,
-    },
-    {
-      url: "https://bmkstudio.be/travail/qamees-place",
+    })),
+    { url: `${BASE}/formations`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/contact`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.6 },
+
+    // ── EN ──
+    { url: `${BASE}/en`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.95 },
+    { url: `${BASE}/en/travail`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.85 },
+    ...slugs.map((slug) => ({
+      url: `${BASE}/en/travail/${slug}`,
       lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.7,
-    },
-    {
-      url: "https://bmkstudio.be/travail/nutfully",
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.7,
-    },
-    {
-      url: "https://bmkstudio.be/travail/frange",
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.7,
-    },
-    {
-      url: "https://bmkstudio.be/travail/restaurant-2",
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.7,
-    },
-    {
-      url: "https://bmkstudio.be/travail/travaux-personnels",
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.7,
-    },
-    {
-      url: "https://bmkstudio.be/formations",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: "https://bmkstudio.be/contact",
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.6,
-    },
+      changeFrequency: "yearly" as const,
+      priority: 0.65,
+    })),
+    { url: `${BASE}/en/formations`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.75 },
+    { url: `${BASE}/en/contact`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.55 },
   ];
 }

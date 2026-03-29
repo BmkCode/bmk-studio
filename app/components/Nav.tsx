@@ -2,15 +2,27 @@
 
 import { useState } from "react";
 import Link from "next/link";
-
-const links = [
-  { href: "/travail",    label: "Travail" },
-  { href: "/formations", label: "Formations" },
-  { href: "/contact",    label: "Contact" },
-];
+import { usePathname, useRouter } from "next/navigation";
+import { translations } from "../../lib/translations";
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const isEN = pathname.startsWith("/en");
+  const t = isEN ? translations.en : translations.fr;
+  const basePath = isEN ? "/en" : "";
+
+  const links = [
+    { href: `${basePath}/travail`, label: t.nav.work },
+    { href: `${basePath}/formations`, label: t.nav.training },
+    { href: `${basePath}/contact`, label: t.nav.contact },
+  ];
+
+  const logoHref = isEN ? "/en" : "/";
+  const toFR = isEN ? pathname.replace(/^\/en/, "") || "/" : pathname;
+  const toEN = isEN ? pathname : `/en${pathname}`;
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6">
@@ -25,7 +37,7 @@ export default function Nav() {
 
       {/* Logo */}
       <Link
-        href="/"
+        href={logoHref}
         className="relative font-archivo text-xl tracking-tight text-bmk-text transition-opacity hover:opacity-80"
         style={{ display: "inline-block", transform: "scaleY(1.15)" }}
       >
@@ -45,6 +57,41 @@ export default function Nav() {
             {label}
           </Link>
         ))}
+
+        {/* Language switcher */}
+        <div className="flex items-center gap-1.5">
+          <button
+            onClick={() => router.push(toFR)}
+            className="font-inter font-light uppercase tracking-widest transition-colors duration-200"
+            style={{
+              fontSize: 9,
+              letterSpacing: "0.2em",
+              color: !isEN ? "#ffb400" : "rgba(221,226,236,0.25)",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: 0,
+            }}
+          >
+            FR
+          </button>
+          <span style={{ color: "rgba(221,226,236,0.15)", fontSize: 9 }}>|</span>
+          <button
+            onClick={() => router.push(toEN)}
+            className="font-inter font-light uppercase tracking-widest transition-colors duration-200"
+            style={{
+              fontSize: 9,
+              letterSpacing: "0.2em",
+              color: isEN ? "#ffb400" : "rgba(221,226,236,0.25)",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: 0,
+            }}
+          >
+            EN
+          </button>
+        </div>
       </nav>
 
       {/* Hamburger — mobile only */}
@@ -90,6 +137,37 @@ export default function Nav() {
                 {label}
               </Link>
             ))}
+
+            {/* Language switcher mobile */}
+            <div className="flex items-center gap-3 mt-4">
+              <button
+                onClick={() => { router.push(toFR); setOpen(false); }}
+                className="font-inter font-light uppercase tracking-widest"
+                style={{
+                  fontSize: 11,
+                  color: !isEN ? "#ffb400" : "rgba(221,226,236,0.25)",
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+              >
+                FR
+              </button>
+              <span style={{ color: "rgba(221,226,236,0.15)" }}>|</span>
+              <button
+                onClick={() => { router.push(toEN); setOpen(false); }}
+                className="font-inter font-light uppercase tracking-widest"
+                style={{
+                  fontSize: 11,
+                  color: isEN ? "#ffb400" : "rgba(221,226,236,0.25)",
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+              >
+                EN
+              </button>
+            </div>
           </nav>
         </div>
       )}

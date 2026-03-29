@@ -5,8 +5,7 @@ import Footer from "../components/Footer";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useIsMobile } from "../hooks/useIsMobile";
-
-const services = ["Photo produit", "Vidéo", "Formation", "Autre"] as const;
+import { translations, type Translations } from "../../lib/translations";
 
 const inputStyle: React.CSSProperties = {
   width: "100%",
@@ -56,9 +55,13 @@ function validate(nom: string, email: string, message: string) {
   return errors;
 }
 
-export default function ContactClient() {
+export default function ContactClient({
+  t = translations.fr,
+}: {
+  t?: Translations;
+}) {
   const isMobile = useIsMobile();
-  const [selected, setSelected] = useState<string>("Photo produit");
+  const [selected, setSelected] = useState(t.contact.qualifiers[0]);
   const [hoveredService, setHoveredService] = useState<string | null>(null);
   const [hoveredSocial, setHoveredSocial] = useState<string | null>(null);
 
@@ -135,7 +138,7 @@ export default function ContactClient() {
         setEmail("");
         setEntreprise("");
         setMessage("");
-        setSelected("Photo produit");
+        setSelected(t.contact.qualifiers[0]);
       } else {
         setServerError(true);
       }
@@ -171,7 +174,7 @@ export default function ContactClient() {
               className="font-inter font-light uppercase tracking-[0.22em] text-bmk-text/50"
               style={{ fontSize: 9 }}
             >
-              Travaillons ensemble
+              {t.contact.eyebrow}
             </span>
           </div>
 
@@ -190,7 +193,7 @@ export default function ContactClient() {
               transform: "scaleY(1.15)",
             }}
           >
-            <span className="font-archivo text-bmk-text">Un projet en </span>
+            <span className="font-archivo text-bmk-text">{t.contact.title}{" "}</span>
             <span
               className="font-meaculpa italic"
               style={{
@@ -199,7 +202,7 @@ export default function ContactClient() {
                   "0 0 32px rgba(255,180,0,0.55), 0 0 64px rgba(255,180,0,0.2), 0 0 96px rgba(255,180,0,0.08)",
               }}
             >
-              lumière ?
+              {t.contact.title_em}
             </span>
           </h1>
         </section>
@@ -225,21 +228,21 @@ export default function ContactClient() {
                 className="font-archivo text-bmk-text"
                 style={{ fontSize: 20, display: "inline-block", transform: "scaleY(1.15)" }}
               >
-                Bmk Studio
+                {t.contact.studio_title}
               </h2>
               <p
                 className="font-inter font-light leading-relaxed text-bmk-text/50"
                 style={{ fontSize: 14 }}
               >
-                Studio photo &amp; vidéo basé à Bruxelles. Disponible pour missions en Belgique et à l&apos;international. Réponse sous 48h.
+                {t.contact.studio_text}
               </p>
             </div>
 
             <div className="flex flex-col gap-3">
               {[
-                { label: "Email", value: "bmkfotography@gmail.com" },
-                { label: "Zone", value: "Belgique & international" },
-                { label: "Devis", value: "Gratuit, sous 48h" },
+                { label: t.contact.email_label, value: "bmkfotography@gmail.com" },
+                { label: t.contact.zone_label, value: t.contact.zone_value },
+                { label: t.contact.devis_label, value: t.contact.devis_value },
               ].map(({ label, value }) => (
                 <div key={label} className="flex items-start gap-3">
                   <span style={{ color: "#ffb400", fontSize: 14, marginTop: 1, flexShrink: 0 }}>·</span>
@@ -297,10 +300,10 @@ export default function ContactClient() {
                 className="font-inter font-light uppercase tracking-widest text-bmk-text/35"
                 style={{ fontSize: 9 }}
               >
-                C&apos;est pour
+                {t.contact.qualifier_label}
               </span>
               <div className="flex flex-wrap gap-2">
-                {services.map((s) => {
+                {t.contact.qualifiers.map((s) => {
                   const active = selected === s;
                   const hov = hoveredService === s && !active;
                   return (
@@ -342,7 +345,7 @@ export default function ContactClient() {
             <div className="flex flex-col">
               <input
                 type="text"
-                placeholder="Nom"
+                placeholder={t.contact.fields.name}
                 value={nom}
                 onChange={(e) => setNom(e.target.value)}
                 style={errors.nom ? errorInputStyle : inputStyle}
@@ -360,7 +363,7 @@ export default function ContactClient() {
             <div className="flex flex-col">
               <input
                 type="email"
-                placeholder="Email"
+                placeholder={t.contact.fields.email}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 style={errors.email ? errorInputStyle : inputStyle}
@@ -377,7 +380,7 @@ export default function ContactClient() {
             {/* Entreprise (optionnel) */}
             <input
               type="text"
-              placeholder="Entreprise / marque"
+              placeholder={t.contact.fields.company}
               value={entreprise}
               onChange={(e) => setEntreprise(e.target.value)}
               style={inputStyle}
@@ -388,7 +391,7 @@ export default function ContactClient() {
             {/* Message */}
             <div className="flex flex-col">
               <textarea
-                placeholder="Décrivez votre projet..."
+                placeholder={t.contact.fields.message}
                 rows={4}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
@@ -413,7 +416,7 @@ export default function ContactClient() {
                 className="font-inter font-light"
                 style={{ fontSize: 13, color: "rgba(180,210,120,0.9)" }}
               >
-                Message envoyé — nous vous répondons sous 48h.
+                {t.contact.success}
               </p>
             )}
             {serverError && (
@@ -421,7 +424,7 @@ export default function ContactClient() {
                 className="font-inter font-light"
                 style={{ fontSize: 13, color: "rgba(220,80,80,0.9)" }}
               >
-                Une erreur est survenue, réessayez.
+                {t.contact.error}
               </p>
             )}
 
@@ -438,13 +441,13 @@ export default function ContactClient() {
                 cursor: loading ? "not-allowed" : "pointer",
               }}
             >
-              {loading ? "Envoi en cours..." : "Envoyer la demande"}
+              {loading ? "Envoi en cours..." : t.contact.submit}
             </button>
           </form>
         </section>
       </main>
 
-      <Footer />
+      <Footer t={t} />
     </>
   );
 }

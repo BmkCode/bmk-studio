@@ -3,8 +3,13 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { translations, type Translations } from "../../lib/translations";
 
-export default function InterludeSection() {
+export default function InterludeSection({
+  t = translations.fr,
+}: {
+  t?: Translations;
+}) {
   const quoteRef = useRef<HTMLQuoteElement>(null);
 
   useEffect(() => {
@@ -24,6 +29,13 @@ export default function InterludeSection() {
     return () => ctx.revert();
   }, []);
 
+  // Highlight "photographie" or "photography" within the quote
+  const rawQuote = t.interlude.quote;
+  const photoWord = rawQuote.includes("photographie") ? "photographie" : "photography";
+  const photoIdx = rawQuote.indexOf(photoWord);
+  const quoteBefore = rawQuote.slice(0, photoIdx);
+  const quoteAfter = rawQuote.slice(photoIdx + photoWord.length);
+
   return (
     <section className="interlude-section relative overflow-hidden text-center" style={{ paddingTop: 56, paddingBottom: 56 }}>
       {/* Golden halo */}
@@ -42,12 +54,11 @@ export default function InterludeSection() {
         style={{ maxWidth: 1100, paddingLeft: 44, paddingRight: 44 }}
       >
         <blockquote ref={quoteRef} className="mx-auto" style={{ maxWidth: "none" }}>
-          {/* Citation en Mea Culpa — "photographie" en accroche dorée */}
           <p
             className="font-meaculpa italic leading-snug text-bmk-text/80 interlude-quote"
             style={{ fontSize: 38, whiteSpace: "nowrap" }}
           >
-            «&nbsp;Ce que l&apos;œil humain ne voit pas, la{" "}
+            «&nbsp;{quoteBefore}
             <span
               style={{
                 color: "#ffb400",
@@ -55,9 +66,9 @@ export default function InterludeSection() {
                   "0 0 24px rgba(255,180,0,0.45), 0 0 48px rgba(255,180,0,0.18)",
               }}
             >
-              photographie
-            </span>{" "}
-            vous le montrera.&nbsp;»
+              {photoWord}
+            </span>
+            {quoteAfter}&nbsp;»
           </p>
 
           <footer className="mt-6">
@@ -65,7 +76,7 @@ export default function InterludeSection() {
               className="font-inter font-light uppercase tracking-widest"
               style={{ fontSize: 9, color: "rgba(221,226,236,0.16)" }}
             >
-              — BMK Studio, Bruxelles
+              {t.interlude.attr}
             </span>
           </footer>
         </blockquote>
