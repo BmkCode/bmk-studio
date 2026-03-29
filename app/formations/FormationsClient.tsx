@@ -11,13 +11,15 @@ const formationsFr = [
   {
     num: "01",
     duree: "2 jours — Débutant à intermédiaire",
-    titre: "Appareil, lumière & composition avec Bmk",
+    titre: "Lumière, appareil & regard",
     description:
       "Maîtrisez les fondamentaux de la photographie produit — de la gestion de la lumière à la post-production.",
     programme: [
-      "Apprendre et comprendre son appareil",
-      "Maîtriser la lumière",
-      "Raconter une histoire à travers l'image",
+      "Composition & cadrage — règle des tiers, lignes directrices, perspectives",
+      "Triangle d'exposition — ouverture, vitesse, ISO",
+      "Lumière & ombres — direction, qualité, température de couleur",
+      "Paramètres avancés — modes de prise de vue, balance des blancs, mise au point",
+      "Formats RAW vs JPEG & retouche de base",
     ],
   },
 ];
@@ -26,13 +28,15 @@ const formationsEn = [
   {
     num: "01",
     duree: "2 days — Beginner to intermediate",
-    titre: "Camera, light & composition with Bmk",
+    titre: "Light, Camera & Eye",
     description:
       "Master the fundamentals of product photography — from light management to post-production.",
     programme: [
-      "Learn and understand your camera",
-      "Master light",
-      "Tell a story through the image",
+      "Composition & framing — rule of thirds, leading lines, perspectives",
+      "Exposure triangle — aperture, shutter speed, ISO",
+      "Light & shadows — direction, quality, colour temperature",
+      "Advanced settings — shooting modes, white balance, focus",
+      "RAW vs JPEG formats & basic editing",
     ],
   },
 ];
@@ -84,6 +88,7 @@ function FormationModal({
   const [email, setEmail] = useState("");
   const [telephone, setTelephone] = useState("");
   const [message, setMessage] = useState("");
+  const [equipment, setEquipment] = useState<string[]>([]);
   const [errors, setErrors] = useState<{ nom?: string; email?: string; contact?: string }>({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -98,6 +103,19 @@ function FormationModal({
       return () => document.removeEventListener("keydown", handleEsc);
     }
   }, [isOpen, onClose]);
+
+  const equipmentOptions = [
+    { key: "smartphone", label: t.formations.modal_equipment.smartphone },
+    { key: "beginner", label: t.formations.modal_equipment.beginner },
+    { key: "advanced", label: t.formations.modal_equipment.advanced },
+    { key: "other", label: t.formations.modal_equipment.other },
+  ];
+
+  const toggleEquipment = (key: string) => {
+    setEquipment((prev) =>
+      prev.includes(key) ? prev.filter((e) => e !== key) : [...prev, key]
+    );
+  };
 
   if (!isOpen || !formation) return null;
 
@@ -132,6 +150,11 @@ function FormationModal({
     setLoading(true);
 
     try {
+      const equipmentText = equipment.length > 0
+        ? `\n\nMatériel utilisé : ${equipment.map(e => equipmentOptions.find(opt => opt.key === e)?.label || e).join(", ")}`
+        : "";
+      const fullMessage = message ? `${message}${equipmentText}` : equipmentText;
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -140,7 +163,7 @@ function FormationModal({
           nom,
           email,
           telephone: telephone || undefined,
-          message: message || undefined,
+          message: fullMessage || undefined,
         }),
       });
       if (res.ok) {
@@ -149,6 +172,7 @@ function FormationModal({
         setEmail("");
         setTelephone("");
         setMessage("");
+        setEquipment([]);
         setTimeout(() => {
           onClose();
         }, 2000);
@@ -288,6 +312,67 @@ function FormationModal({
               <FieldError msg={errors.email} />
             </div>
 
+            {/* Equipment */}
+            <div className="flex flex-col gap-2">
+              <span
+                className="font-inter font-light uppercase tracking-widest text-bmk-text/35"
+                style={{ fontSize: 9 }}
+              >
+                {t.formations.modal_equipment.label}
+              </span>
+              <div className="flex flex-col gap-2">
+                {equipmentOptions.map((option) => {
+                  const isChecked = equipment.includes(option.key);
+                  return (
+                    <label
+                      key={option.key}
+                      className="flex items-center gap-3 cursor-pointer"
+                      style={{ userSelect: "none" }}
+                    >
+                      <div
+                        style={{
+                          width: 18,
+                          height: 18,
+                          border: `1px solid ${isChecked ? "rgba(255,180,0,0.55)" : "rgba(255,255,255,0.08)"}`,
+                          borderRadius: 3,
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          backgroundColor: isChecked ? "transparent" : "transparent",
+                          transition: "border-color 200ms",
+                          flexShrink: 0,
+                        }}
+                      >
+                        {isChecked && (
+                          <span
+                            style={{
+                              fontSize: 12,
+                              color: "#ffb400",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            ✓
+                          </span>
+                        )}
+                      </div>
+                      <input
+                        type="checkbox"
+                        checked={isChecked}
+                        onChange={() => toggleEquipment(option.key)}
+                        style={{ display: "none" }}
+                      />
+                      <span
+                        className="font-inter font-light text-bmk-text/65"
+                        style={{ fontSize: 14 }}
+                      >
+                        {option.label}
+                      </span>
+                    </label>
+                  );
+                })}
+              </div>
+            </div>
+
             {/* Telephone */}
             <input
               type="tel"
@@ -305,7 +390,7 @@ function FormationModal({
 
             {/* Message */}
             <textarea
-              placeholder={t.formations.modal_fields.message}
+              placeholder={t.formations.modal_fields.message_optional}
               rows={3}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
