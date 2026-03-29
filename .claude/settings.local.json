@@ -3,7 +3,8 @@
     "allow": [
       "Bash(npx tsc:*)",
       "Bash(npm install:*)",
-      "Bash(find K:/bmk-studio/public/images -iname *produit*)"
+      "Bash(find K:/bmk-studio/public/images -iname *produit*)",
+      "Bash(npm run:*)"
     ]
   }
 }

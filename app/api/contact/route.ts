@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
-  const { type, nom, email, entreprise, message } = await request.json();
+  const { type, nom, email, entreprise, message, telephone } = await request.json();
 
   const html = `
     <div style="font-family:sans-serif;max-width:560px;margin:0 auto;color:#1a1a1a">
@@ -26,6 +26,11 @@ export async function POST(request: Request) {
         <tr>
           <td style="padding:8px 0;color:#666">Entreprise</td>
           <td style="padding:8px 0;font-weight:500">${entreprise}</td>
+        </tr>` : ""}
+        ${telephone ? `
+        <tr>
+          <td style="padding:8px 0;color:#666">Téléphone</td>
+          <td style="padding:8px 0;font-weight:500">${telephone}</td>
         </tr>` : ""}
         <tr>
           <td style="padding:8px 0;color:#666">Service</td>
