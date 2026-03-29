@@ -12,6 +12,7 @@ const projects = [
     slug: "le-restaurant",
     name: "Le Restaurant",
     category: "Restauration",
+    categoryEn: "Hospitality",
     image: "/images/restaurant/Restaurant (14).JPG",
     style: { gridColumn: "1", gridRow: "1 / span 2" },
   },
@@ -19,6 +20,7 @@ const projects = [
     slug: "qamees-place",
     name: "Qamees Place",
     category: "Mode",
+    categoryEn: "Fashion",
     image: "/images/qamees-place/Qameesplace (5).JPG",
     style: { gridColumn: "2", gridRow: "1" },
   },
@@ -26,6 +28,7 @@ const projects = [
     slug: "nutfully",
     name: "Nutfully",
     category: "Fruits secs",
+    categoryEn: "Dried fruits",
     image: "/images/nutfully/Nutfully-5.jpg",
     style: { gridColumn: "2", gridRow: "2" },
   },
@@ -33,6 +36,7 @@ const projects = [
     slug: "frange",
     name: "Frange",
     category: "Coiffure",
+    categoryEn: "Hair salon",
     image: "/images/frange/Frange (1).JPG",
     style: { gridColumn: "1 / span 2", gridRow: "3" },
   },
@@ -237,12 +241,14 @@ export default function WorkSection({
             >
               {t.work.title_em}
             </span>
-            <span
-              className="font-archivo"
-              style={{ color: "#d4a843" }}
-            >
-              {" "}{t.work.title_end}
-            </span>
+            {t.work.title_end && (
+              <span
+                className="font-archivo"
+                style={{ color: "#d4a843" }}
+              >
+                {" "}{t.work.title_end}
+              </span>
+            )}
           </h2>
         </div>
 
@@ -262,7 +268,7 @@ export default function WorkSection({
             <ProjectCard
               key={p.slug}
               name={p.name}
-              category={p.category}
+              category={basePath === "/en" ? p.categoryEn : p.category}
               image={p.image}
               slug={p.slug}
               style={p.style}

@@ -8,7 +8,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { translations, type Translations } from "../../../lib/translations";
 
-const projects: Record<string, {
+type ProjectData = {
   nom: string;
   categorie: string;
   annee: string;
@@ -18,7 +18,9 @@ const projects: Record<string, {
   images: string[];
   precedent: string | null;
   suivant: string | null;
-}> = {
+};
+
+const projects: Record<string, ProjectData> = {
   "le-restaurant": {
     nom: "Le Restaurant",
     categorie: "Photo produit",
@@ -187,6 +189,175 @@ const projects: Record<string, {
   },
 };
 
+const projectsEn: Record<string, ProjectData> = {
+  "le-restaurant": {
+    nom: "Le Restaurant",
+    categorie: "Product photography",
+    annee: "2022",
+    visuels: "16 visuals",
+    pitch: "A year documenting the soul of a place — the light of service, the detail of a table, the moment before everything begins.",
+    description: "A year-long collaboration with a Brussels restaurant. The goal: build a coherent visual identity for social media and the website. Every image crafted to convey the atmosphere, the quality, the care for detail.",
+    images: [
+      "/images/restaurant/Restaurant (14).JPG",
+      "/images/restaurant/Restaurant (1).JPG",
+      "/images/restaurant/Restaurant (2).JPG",
+      "/images/restaurant/Restaurant (3).JPG",
+      "/images/restaurant/Restaurant (4).JPG",
+      "/images/restaurant/Restaurant (5).JPG",
+      "/images/restaurant/Restaurant (6).JPG",
+      "/images/restaurant/Restaurant (16).JPG",
+      "/images/restaurant/Restaurant (8).JPG",
+      "/images/restaurant/Restaurant (9).JPG",
+      "/images/restaurant/Restaurant (10).JPG",
+      "/images/restaurant/Restaurant (11).JPG",
+      "/images/restaurant/Restaurant (12).JPG",
+      "/images/restaurant/Restaurant (13).JPG",
+      "/images/restaurant/Restaurant (7).JPG",
+      "/images/restaurant/Restaurant (15).JPG",
+    ],
+    precedent: null,
+    suivant: "qamees-place",
+  },
+  "qamees-place": {
+    nom: "Qamees Place",
+    categorie: "Product photography",
+    annee: "2025",
+    visuels: "18 visuals",
+    pitch: "Traditional garments elevated by light — qamis, djellabas and gandoras photographed with the elegance they deserve.",
+    description: "Qamees Place is a Dutch brand specialising in traditional clothing for men, women and children — qamis, djellabas, gandoras. The mission: showcase these pieces with refined photography that honours their cultural identity while appealing to a modern, discerning clientele.",
+    images: [
+      "/images/qamees-place/Qameesplace (5).JPG",
+      "/images/qamees-place/Qameesplace (1).JPG",
+      "/images/qamees-place/Qameesplace (2).JPG",
+      "/images/qamees-place/Qameesplace (3).JPG",
+      "/images/qamees-place/Qameesplace (4).JPG",
+      "/images/qamees-place/Qameesplace (6).JPG",
+      "/images/qamees-place/Qameesplace (7).JPG",
+      "/images/qamees-place/Qameesplace (8).JPG",
+      "/images/qamees-place/Qameesplace (9).JPG",
+      "/images/qamees-place/Qameesplace (10).JPG",
+      "/images/qamees-place/Qameesplace (11).JPG",
+      "/images/qamees-place/Qameesplace (12).JPG",
+      "/images/qamees-place/Qameesplace (13).JPG",
+      "/images/qamees-place/Qameesplace (14).JPG",
+      "/images/qamees-place/Qameesplace (15).JPG",
+      "/images/qamees-place/Qameesplace (16).JPG",
+      "/images/qamees-place/Qameesplace (17).JPG",
+      "/images/qamees-place/Qameesplace (18).JPG",
+    ],
+    precedent: "le-restaurant",
+    suivant: "nutfully",
+  },
+  "nutfully": {
+    nom: "Nutfully",
+    categorie: "Product photography",
+    annee: "2023-2025",
+    visuels: "8 visuals",
+    pitch: "Raw and generous textures — walnuts, almonds, pistachios photographed in their most natural truth.",
+    description: "Nutfully sources dried fruits directly at origin. Packshots and natural arrangements to highlight the quality and authenticity of the products.",
+    images: [
+      "/images/nutfully/Nutfully-0.jpg",
+      "/images/nutfully/Nutfully-1.JPG",
+      "/images/nutfully/Nutfully-2.JPG",
+      "/images/nutfully/Nutfully-3.JPG",
+      "/images/nutfully/Nutfully-4.JPG",
+      "/images/nutfully/Nutfully-5.jpg",
+      "/images/nutfully/Nutfully-6.jpg",
+      "/images/nutfully/Nutfully-7.JPG",
+      "/images/nutfully/Nutfully-8.JPG",
+    ],
+    precedent: "qamees-place",
+    suivant: "frange",
+  },
+  "frange": {
+    nom: "Frange",
+    categorie: "Photography",
+    annee: "2024",
+    visuels: "15 visuals",
+    pitch: "An eternal story of hair — capturing the gesture, the texture, the energy of a salon that lives.",
+    description: "Frange is a modern Brussels hair salon. Full photo report: salon atmosphere, hairdresser gestures, products, client portraits.",
+    images: [
+      "/images/frange/Frange (1).JPG",
+      "/images/frange/Frange (12).JPG",
+      "/images/frange/Frange (13).JPG",
+      "/images/frange/Frange (14).JPG",
+      "/images/frange/Frange (15).JPG",
+      "/images/frange/Frange (16).JPG",
+      "/images/frange/Frange (17).JPG",
+      "/images/frange/Frange (18).JPG",
+      "/images/frange/Frange (19).JPG",
+      "/images/frange/Frange (20).JPG",
+      "/images/frange/Frange (21).JPG",
+      "/images/frange/Frange (22).JPG",
+      "/images/frange/Frange (23).JPG",
+      "/images/frange/Frange (24).JPG",
+      "/images/frange/Frange (25).JPG",
+    ],
+    precedent: "nutfully",
+    suivant: "restaurant-2",
+  },
+  "restaurant-2": {
+    nom: "Restaurant 2",
+    categorie: "Photography",
+    annee: "2024",
+    visuels: "17 visuals",
+    pitch: "Fusion cuisine between tradition and modernity — elevating the plate, the ambiance and the detail to tell a unique gastronomic experience.",
+    description: "A fusion restaurant that blends flavours and cultures. The mission: capture the visual identity of the venue — the dim lighting, the crafted plates, the energy of service. Images designed to make you hungry before you've even tasted.",
+    images: [
+      "/images/restaurant 2/torofusion (9).JPG",
+      "/images/restaurant 2/torofusion (1).jpg",
+      "/images/restaurant 2/torofusion (2).jpg",
+      "/images/restaurant 2/torofusion (3).jpg",
+      "/images/restaurant 2/torofusion (4).jpg",
+      "/images/restaurant 2/torofusion (5).jpg",
+      "/images/restaurant 2/torofusion (6).jpg",
+      "/images/restaurant 2/torofusion (7).jpg",
+      "/images/restaurant 2/torofusion (8).jpg",
+      "/images/restaurant 2/torofusion (9).JPG",
+      "/images/restaurant 2/torofusion (10).jpg",
+      "/images/restaurant 2/torofusion (11).JPG",
+      "/images/restaurant 2/torofusion (12).JPG",
+      "/images/restaurant 2/torofusion (13).JPG",
+      "/images/restaurant 2/torofusion (14).jpg",
+      "/images/restaurant 2/torofusion (15).jpg",
+      "/images/restaurant 2/torofusion (16).jpg",
+      "/images/restaurant 2/torofusion (17).jpg",
+    ],
+    precedent: "frange",
+    suivant: "travaux-personnels",
+  },
+  "travaux-personnels": {
+    nom: "Personal work",
+    categorie: "Photo & Video",
+    annee: "2023-2025",
+    visuels: "17 visuals",
+    pitch: "Mastery of light, depth of field and staging — images that reveal the technique and sensibility of the BMK eye.",
+    description: "A selection of personal work exploring luxury product photography — watchmaking, perfumery, accessories. Each image is a study in light, texture and composition. These projects are the studio's creative laboratory — where technique is freed from the brief.",
+    images: [
+      "/images/travaux personnels/produit (8).png",
+      "/images/travaux personnels/produit (1).JPG",
+      "/images/travaux personnels/produit (1).png",
+      "/images/travaux personnels/produit (2).jpg",
+      "/images/travaux personnels/produit (2).png",
+      "/images/travaux personnels/produit (3).jpg",
+      "/images/travaux personnels/produit (3).png",
+      "/images/travaux personnels/produit (4).jpg",
+      "/images/travaux personnels/produit (4).png",
+      "/images/travaux personnels/produit (5).jpg",
+      "/images/travaux personnels/produit (5).png",
+      "/images/travaux personnels/produit (6).jpg",
+      "/images/travaux personnels/produit (6).png",
+      "/images/travaux personnels/produit (7).png",
+      "/images/travaux personnels/produit (8).png",
+      "/images/travaux personnels/produit (9).png",
+      "/images/travaux personnels/produit (10).png",
+      "/images/travaux personnels/produit (11).png",
+    ],
+    precedent: "restaurant-2",
+    suivant: null,
+  },
+};
+
 const ctrlStyle: React.CSSProperties = {
   display: "inline-flex",
   alignItems: "center",
@@ -300,7 +471,8 @@ export default function ProjetClient({
 }) {
   const params = useParams();
   const slug = typeof params.slug === "string" ? params.slug : "";
-  const projet = projects[slug];
+  const dataset = basePath === "/en" ? projectsEn : projects;
+  const projet = dataset[slug];
 
   const heroRef = useRef<HTMLDivElement>(null);
   const metaRef = useRef<HTMLDivElement>(null);
@@ -410,7 +582,7 @@ export default function ProjetClient({
             {t.projet.back}
           </a>
           <p className="mt-12 font-inter font-light text-bmk-text/40" style={{ fontSize: 15 }}>
-            Projet introuvable.
+            {t.projet.not_found}
           </p>
         </main>
         <Footer t={t} />

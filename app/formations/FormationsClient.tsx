@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useIsMobile } from "../hooks/useIsMobile";
 import { translations, type Translations } from "../../lib/translations";
 
-const formations = [
+const formationsFr = [
   {
     num: "01",
     duree: "2 jours — Débutant à intermédiaire",
@@ -46,6 +46,45 @@ const formations = [
   },
 ];
 
+const formationsEn = [
+  {
+    num: "01",
+    duree: "2 days — Beginner to intermediate",
+    titre: "Camera, light & composition with Bmk",
+    description:
+      "Master the fundamentals of product photography — from light management to post-production.",
+    programme: [
+      "Learn and understand your camera",
+      "Master light",
+      "Tell a story through the image",
+    ],
+  },
+  {
+    num: "02",
+    duree: "1 day — All levels",
+    titre: "Smartphone video & social content",
+    description:
+      "Create professional video content with your phone.",
+    programme: [
+      "Camera settings, stabilisation, framing",
+      "Sound, natural light, quick staging",
+      "Mobile editing and optimised export",
+    ],
+  },
+  {
+    num: "03",
+    duree: "1 day — Intermediate",
+    titre: "Editing & post-production",
+    description:
+      "From rushes to final render — master rhythm, colour and export.",
+    programme: [
+      "Cutting, rhythm, transitions",
+      "Colour grading — mood and visual consistency",
+      "Multi-format export",
+    ],
+  },
+];
+
 export default function FormationsClient({
   t = translations.fr,
   basePath = "",
@@ -54,6 +93,7 @@ export default function FormationsClient({
   basePath?: string;
 }) {
   const isMobile = useIsMobile();
+  const formations = basePath === "/en" ? formationsEn : formationsFr;
   const headerRef = useRef<HTMLElement>(null);
   const introRef = useRef<HTMLElement>(null);
   const cardsRef = useRef<HTMLElement>(null);

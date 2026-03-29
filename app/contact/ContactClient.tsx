@@ -39,18 +39,18 @@ function FieldError({ msg }: { msg: string | undefined }) {
   );
 }
 
-function validate(nom: string, email: string, message: string) {
+function validate(nom: string, email: string, message: string, t: Translations) {
   const errors: { nom?: string; email?: string; message?: string } = {};
-  if (!nom.trim()) errors.nom = "Le nom est requis.";
+  if (!nom.trim()) errors.nom = t.contact.validation.name_required;
   if (!email.trim()) {
-    errors.email = "L'email est requis.";
+    errors.email = t.contact.validation.email_required;
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    errors.email = "Format d'email invalide.";
+    errors.email = t.contact.validation.email_invalid;
   }
   if (!message.trim()) {
-    errors.message = "Le message est requis.";
+    errors.message = t.contact.validation.message_required;
   } else if (message.trim().length < 10) {
-    errors.message = "Minimum 10 caractères.";
+    errors.message = t.contact.validation.message_min;
   }
   return errors;
 }
@@ -118,7 +118,7 @@ export default function ContactClient({
     setSuccess(false);
     setServerError(false);
 
-    const fieldErrors = validate(nom, email, message);
+    const fieldErrors = validate(nom, email, message, t);
     if (Object.keys(fieldErrors).length > 0) {
       setErrors(fieldErrors);
       return;
@@ -441,7 +441,7 @@ export default function ContactClient({
                 cursor: loading ? "not-allowed" : "pointer",
               }}
             >
-              {loading ? "Envoi en cours..." : t.contact.submit}
+              {loading ? t.contact.loading : t.contact.submit}
             </button>
           </form>
         </section>

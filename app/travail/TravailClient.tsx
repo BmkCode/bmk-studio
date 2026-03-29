@@ -7,7 +7,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { translations, type Translations } from "../../lib/translations";
 
-const featured = {
+const featuredFr = {
   slug: "le-restaurant",
   name: "Le Restaurant",
   tags: ["Restauration", "Client", "Photo"],
@@ -17,7 +17,17 @@ const featured = {
   image: "/images/restaurant/Restaurant (14).JPG",
 };
 
-const projects = [
+const featuredEn = {
+  slug: "le-restaurant",
+  name: "Le Restaurant",
+  tags: ["Hospitality", "Client", "Photo"],
+  pitch:
+    "A year documenting the soul of a place — the light of service, the detail of a table, the moment before everything begins.",
+  meta: "20 visuals",
+  image: "/images/restaurant/Restaurant (14).JPG",
+};
+
+const projectsFr = [
   {
     slug: "qamees-place",
     name: "Qamees Place",
@@ -70,6 +80,59 @@ const projects = [
   },
 ];
 
+const projectsEn = [
+  {
+    slug: "qamees-place",
+    name: "Qamees Place",
+    tags: ["Fashion", "Photo"],
+    pitch:
+      "Traditional garments elevated by light — qamis, djellabas and gandoras photographed with the elegance they deserve.",
+    meta: "18 visuals",
+    year: "2025",
+    image: "/images/qamees-place/Qameesplace (5).JPG",
+  },
+  {
+    slug: "nutfully",
+    name: "Nutfully",
+    tags: ["Dried fruits", "Photo"],
+    pitch:
+      "Raw and generous textures — walnuts, almonds, pistachios photographed in their most natural truth.",
+    meta: "8 visuals",
+    year: "2023–2025",
+    image: "/images/nutfully/Nutfully-6.jpg",
+  },
+  {
+    slug: "frange",
+    name: "Frange",
+    tags: ["Hair salon", "Photo"],
+    pitch:
+      "An eternal story of hair — capturing the gesture, the texture, the energy of a salon that lives.",
+    meta: "12 visuals",
+    year: null,
+    image: "/images/frange/Frange (1).JPG",
+  },
+  {
+    slug: "restaurant-2",
+    name: "Restaurant 2",
+    tags: ["Hospitality", "Photo"],
+    pitch:
+      "Fusion cuisine between tradition and modernity — elevating the plate, the ambiance and the detail to tell a unique gastronomic experience.",
+    meta: "17 visuals",
+    year: "2024",
+    image: "/images/restaurant 2/torofusion (9).JPG",
+  },
+  {
+    slug: "travaux-personnels",
+    name: "Personal work",
+    tags: ["Photo", "Video"],
+    pitch:
+      "Mastery of light, depth of field and staging — images that reveal the technique and sensibility of the BMK eye.",
+    meta: "17 visuals",
+    year: "2023–2025",
+    image: "/images/travaux personnels/produit (8).png",
+  },
+];
+
 function TagList({ tags }: { tags: string[] }) {
   return (
     <div className="flex flex-wrap gap-2">
@@ -99,6 +162,9 @@ export default function TravailClient({
   t?: Translations;
   basePath?: string;
 }) {
+  const featured = basePath === "/en" ? featuredEn : featuredFr;
+  const projects = basePath === "/en" ? projectsEn : projectsFr;
+
   const [featuredHover, setFeaturedHover] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [imgErrors, setImgErrors] = useState<Set<string>>(new Set());
