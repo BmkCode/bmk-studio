@@ -52,7 +52,7 @@ export const translations = {
       price: "Sur devis",
       max: "Max 6 pers.",
       modal_title: "S'inscrire à la formation",
-      modal_note: "Merci de renseigner au moins une adresse email ou un numéro de téléphone afin que nous puissions confirmer votre inscription.",
+      modal_note: "Merci de renseigner une adresse email et/ou un numéro joignable — indispensables pour confirmer votre place.",
       modal_fields: {
         name: "Nom",
         email: "Email",
@@ -179,7 +179,7 @@ export const translations = {
       price: "On quote",
       max: "Max 6 people",
       modal_title: "Register for training",
-      modal_note: "Please provide at least an email address or phone number so we can confirm your registration.",
+      modal_note: "Please provide a reachable email address and/or phone number — required to confirm your spot.",
       modal_fields: {
         name: "Name",
         email: "Email",
