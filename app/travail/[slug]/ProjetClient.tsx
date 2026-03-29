@@ -433,6 +433,7 @@ function ImageSlot({
         src={src}
         alt={altText}
         fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1100px) 62vw, 668px"
         style={{ objectFit: "cover" }}
         onError={() => setErrored(true)}
       />
@@ -680,6 +681,7 @@ export default function ProjetClient({
                 src={imgs[0]}
                 alt={`${projet.nom} — projet ${projet.categorie} Bmk Studio Bruxelles`}
                 fill
+                sizes="100vw"
                 style={{ objectFit: "cover", objectPosition: slug === "le-restaurant" ? "center 40%" : "center" }}
                 priority
               />

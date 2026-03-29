@@ -4,7 +4,11 @@
       "Bash(npx tsc:*)",
       "Bash(npm install:*)",
       "Bash(find K:/bmk-studio/public/images -iname *produit*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(find /K/bmk-studio -type f ! -path */.next/* ! -path */.git/* ! -path */node_modules/* ! -path */.claude/* -o -name .claudiongore)",
+      "Bash(xargs wc:*)",
+      "Bash(grep:*)",
+      "Bash(head -20 /K/bmk-studio/app/travail/[slug]/ProjetClient.tsx)"
     ]
   }
 }

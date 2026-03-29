@@ -100,6 +100,7 @@ function ProjectCard({
             src={image}
             alt={`${name} — photographie par Bmk Studio`}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1100px) 60vw, 668px"
             style={{ objectFit: "cover" }}
           />
         )}

@@ -296,6 +296,7 @@ export default function TravailClient({
                   src={featured.image}
                   alt={`${featured.name} — photographie par Bmk Studio`}
                   fill
+                  sizes="(max-width: 1100px) 100vw, 1100px"
                   style={{ objectFit: "cover", objectPosition: "center 40%" }}
                   onError={() => onImgError("featured")}
                 />
@@ -425,6 +426,7 @@ export default function TravailClient({
                     src={p.image}
                     alt={`${p.name} — photographie par Bmk Studio`}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 500px"
                     style={{ objectFit: "cover" }}
                     onError={() => onImgError(p.slug)}
                   />
