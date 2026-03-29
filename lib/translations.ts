@@ -52,10 +52,12 @@ export const translations = {
       price: "Sur devis",
       max: "Max 6 pers.",
       modal_title: "S'inscrire à la formation",
+      modal_note: "Merci de renseigner au moins une adresse email ou un numéro de téléphone afin que nous puissions confirmer votre inscription.",
       modal_fields: {
         name: "Nom",
         email: "Email",
         phone: "Téléphone (optionnel)",
+        phone_recommended: "Téléphone (recommandé)",
         message: "Questions ou informations complémentaires...",
       },
       modal_submit: "Envoyer ma candidature",
@@ -66,6 +68,7 @@ export const translations = {
         name_required: "Le nom est requis.",
         email_required: "L'email est requis.",
         email_invalid: "Format d'email invalide.",
+        contact_required: "Veuillez fournir au moins une adresse email ou un numéro de téléphone.",
       },
     },
     contact: {
@@ -168,10 +171,12 @@ export const translations = {
       price: "On quote",
       max: "Max 6 people",
       modal_title: "Register for training",
+      modal_note: "Please provide at least an email address or phone number so we can confirm your registration.",
       modal_fields: {
         name: "Name",
         email: "Email",
         phone: "Phone (optional)",
+        phone_recommended: "Phone (recommended)",
         message: "Questions or additional information...",
       },
       modal_submit: "Submit my application",
@@ -182,6 +187,7 @@ export const translations = {
         name_required: "Name is required.",
         email_required: "Email is required.",
         email_invalid: "Invalid email format.",
+        contact_required: "Please provide at least an email address or phone number.",
       },
     },
     contact: {

@@ -84,7 +84,7 @@ function FormationModal({
   const [email, setEmail] = useState("");
   const [telephone, setTelephone] = useState("");
   const [message, setMessage] = useState("");
-  const [errors, setErrors] = useState<{ nom?: string; email?: string }>({});
+  const [errors, setErrors] = useState<{ nom?: string; email?: string; contact?: string }>({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [serverError, setServerError] = useState(false);
@@ -102,12 +102,18 @@ function FormationModal({
   if (!isOpen || !formation) return null;
 
   const validate = () => {
-    const errs: { nom?: string; email?: string } = {};
+    const errs: { nom?: string; email?: string; contact?: string } = {};
     if (!nom.trim()) errs.nom = t.formations.modal_validation.name_required;
-    if (!email.trim()) {
-      errs.email = t.formations.modal_validation.email_required;
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      errs.email = t.formations.modal_validation.email_invalid;
+
+    const hasEmail = email.trim();
+    const hasPhone = telephone.trim();
+
+    if (!hasEmail && !hasPhone) {
+      errs.contact = t.formations.modal_validation.contact_required;
+    } else {
+      if (hasEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errs.email = t.formations.modal_validation.email_invalid;
+      }
     }
     return errs;
   };
@@ -182,8 +188,8 @@ function FormationModal({
           border: "1px solid rgba(255,255,255,0.07)",
           borderRadius: 8,
           width: "100%",
-          maxWidth: 440,
-          padding: "32px 28px",
+          maxWidth: 520,
+          padding: "40px",
           position: "relative",
         }}
       >
@@ -217,7 +223,7 @@ function FormationModal({
             fontSize: 20,
             display: "inline-block",
             transform: "scaleY(1.15)",
-            marginBottom: 24,
+            marginBottom: 12,
             paddingRight: 24,
           }}
         >
@@ -225,6 +231,19 @@ function FormationModal({
           <br />
           <span style={{ fontSize: 16, opacity: 0.7 }}>{formation.titre}</span>
         </h2>
+
+        {/* Note */}
+        <p
+          className="font-inter font-light"
+          style={{
+            fontSize: 12,
+            color: "rgba(221,226,236,0.45)",
+            marginBottom: 24,
+            lineHeight: 1.5,
+          }}
+        >
+          {t.formations.modal_note}
+        </p>
 
         {/* Form */}
         {!success ? (
@@ -272,7 +291,7 @@ function FormationModal({
             {/* Telephone */}
             <input
               type="tel"
-              placeholder={t.formations.modal_fields.phone}
+              placeholder={t.formations.modal_fields.phone_recommended}
               value={telephone}
               onChange={(e) => setTelephone(e.target.value)}
               style={inputStyle}
@@ -303,7 +322,17 @@ function FormationModal({
               }
             />
 
-            {/* Error message */}
+            {/* Contact error (at least email or phone required) */}
+            {errors.contact && (
+              <p
+                className="font-inter font-light"
+                style={{ fontSize: 11, color: "rgba(220,80,80,0.9)", marginTop: 4 }}
+              >
+                {errors.contact}
+              </p>
+            )}
+
+            {/* Server error message */}
             {serverError && (
               <p
                 className="font-inter font-light"
