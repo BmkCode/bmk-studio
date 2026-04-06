@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Archivo_Black, Mea_Culpa, Inter } from "next/font/google";
+import { Analytics } from '@vercel/analytics/next';
 import "./globals.css";
 import Nav from "./components/Nav";
 import GSAPProvider from "./components/GSAPProvider";
@@ -88,6 +89,7 @@ export default function RootLayout({
       <body className="bg-bmk-bg font-inter text-bmk-text antialiased">
         <Nav />
         <GSAPProvider>{children}</GSAPProvider>
+        <Analytics />
       </body>
     </html>
   );
