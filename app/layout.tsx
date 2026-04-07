@@ -3,6 +3,7 @@ import { Archivo_Black, Mea_Culpa, Inter } from "next/font/google";
 import "./globals.css";
 import Nav from "./components/Nav";
 import GSAPProvider from "./components/GSAPProvider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const archivoBlack = Archivo_Black({
   weight: "400",
@@ -88,6 +89,7 @@ export default function RootLayout({
       <body className="bg-bmk-bg font-inter text-bmk-text antialiased">
         <Nav />
         <GSAPProvider>{children}</GSAPProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
