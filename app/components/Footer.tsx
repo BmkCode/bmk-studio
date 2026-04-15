@@ -27,8 +27,8 @@ export default function Footer({
 
         <nav className="flex items-center gap-8" aria-label="Réseaux sociaux">
           {[
-            { href: "https://instagram.com", label: "Instagram" },
-            { href: "https://linkedin.com", label: "LinkedIn" },
+            { href: "https://www.instagram.com/bmk.studio/", label: "Instagram" },
+            { href: "https://www.linkedin.com/in/m-khalid-bouanane-77a51223a/" , label: "LinkedIn" },
           ].map(({ href, label }) => (
             <a
               key={label}
