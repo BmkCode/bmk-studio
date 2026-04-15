@@ -240,7 +240,7 @@ export default function ContactClient({
 
             <div className="flex flex-col gap-3">
               {[
-                { label: t.contact.email_label, value: "bmkfotography@gmail.com" },
+                { label: t.contact.email_label, value: "info@bmkstudio.be" },
                 { label: t.contact.zone_label, value: t.contact.zone_value },
                 { label: t.contact.devis_label, value: t.contact.devis_value },
               ].map(({ label, value }) => (
@@ -263,8 +263,8 @@ export default function ContactClient({
 
             <div className="flex gap-3">
               {[
-                { href: "https://instagram.com", label: "Instagram" },
-                { href: "https://linkedin.com", label: "LinkedIn" },
+{ href: "https://www.instagram.com/bmk.studio/", label: "Instagram" },
+{ href: "https://www.linkedin.com/in/m-khalid-bouanane-77a51223a/", label: "LinkedIn" },
               ].map(({ href, label }) => {
                 const sh = hoveredSocial === label;
                 return (
