@@ -106,7 +106,7 @@ export async function POST(request: Request) {
   `;
 
   const { error } = await resend.emails.send({
-    from: "Bmk Studio <onboarding@resend.dev>",
+   from: "Bmk Studio <info@bmkstudio.be>",
     to: "info@bmkstudio.be",
     replyTo: email || undefined,
     subject: `[Bmk Studio] Nouvelle demande — ${type}`,
