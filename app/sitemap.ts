@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const BASE = "https://bmkstudio.be";
+const BASE = "https://www.bmkstudio.be";
 
 const slugs = [
   "le-restaurant",

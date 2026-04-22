@@ -56,6 +56,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       projet.nom, projet.categorie, "photography Brussels", "Bmk Studio",
       "commercial photography Belgium", "Brussels photographer"
     ],
+    alternates: { canonical: `/en/travail/${slug}` },
     openGraph: {
       title: `${projet.nom} — Bmk Studio`,
       description: projet.pitch,

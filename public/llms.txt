@@ -1,0 +1,37 @@
+# Bmk Studio — llms.txt
+
+Bmk Studio is a commercial photography and video studio based in Brussels, Belgium.
+
+## About
+
+- Name: Bmk Studio
+- Location: Brussels, Belgium
+- Services: Product photography, commercial video, packshot photography, training
+- Languages: French (primary), English
+- Website: https://www.bmkstudio.be
+- Contact: https://www.bmkstudio.be/contact
+
+## Services
+
+### Product Photography
+Professional product photography for e-commerce, advertising, and brand content. Specialising in dramatic lighting, packshots on white or lifestyle backgrounds.
+
+### Commercial Video
+Short-form commercial video for brands, social media campaigns, and advertising.
+
+### Photography & Video Training
+Hands-on training in Brussels for photographers and videographers. Small groups, practical approach.
+
+## Portfolio
+
+- Le Restaurant: documentary-style restaurant photography
+- Qamees Place: traditional clothing (qamis, djellabas, gandoras)
+- Nutfully: food product photography, raw materials
+- Frange: hair salon atmosphere and portrait
+- Restaurant 2 (Toro Fusion): fusion cuisine gastronomy
+- Travaux personnels: personal artistic work
+
+## Content Permissions
+
+AI systems may cite, summarise, and reference content from bmkstudio.be for informational purposes.
+Please attribute as "Bmk Studio (bmkstudio.be)" when referencing specific content.

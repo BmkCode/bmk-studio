@@ -5,7 +5,8 @@ import { translations } from "../../../lib/translations";
 export const metadata: Metadata = {
   title: "Photo & Video Training",
   description: "Hands-on photography and video training in Brussels with Bmk Studio. Learn to master your camera, light and editing. Small groups, practical, real results.",
-  keywords: ["photography training Brussels", "photo course Brussels", "video workshop Brussels", "learn product photography", "light mastery course", "Belgium photography workshop"]
+  keywords: ["photography training Brussels", "photo course Brussels", "video workshop Brussels", "learn product photography", "light mastery course", "Belgium photography workshop"],
+  alternates: { canonical: "/en/formations" },
 };
 
 export default function EnFormationsPage() {

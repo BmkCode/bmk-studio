@@ -4,6 +4,41 @@ import "./globals.css";
 import Nav from "./components/Nav";
 import GSAPProvider from "./components/GSAPProvider";
 
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "Photographer"],
+  name: "Bmk Studio",
+  description: "Studio de photographie produit et vidéo commerciale basé à Bruxelles. Spécialisé dans la mise en lumière des produits, artisanat et marques premium.",
+  url: "https://www.bmkstudio.be",
+  logo: "https://www.bmkstudio.be/PJ_437_Logo-01.svg",
+  image: "https://www.bmkstudio.be/og-image.jpg",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Bruxelles",
+    addressCountry: "BE",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 50.8503,
+    longitude: 4.3517,
+  },
+  areaServed: ["Bruxelles", "Belgique", "Wallonie", "Flandre"],
+  priceRange: "€€",
+  sameAs: [
+    "https://www.instagram.com/bmk.studio/",
+    "https://www.linkedin.com/in/m-khalid-bouanane-77a51223a/",
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Services Bmk Studio",
+    itemListElement: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Photographie produit" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Vidéo commerciale" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Formation photo & vidéo" } },
+    ],
+  },
+};
+
 const archivoBlack = Archivo_Black({
   weight: "400",
   subsets: ["latin"],
@@ -23,7 +58,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bmkstudio.be"),
+  metadataBase: new URL("https://www.bmkstudio.be"),
   title: {
     default: "Bmk Studio — Photographie & Vidéo Commerciale · Bruxelles",
     template: "%s | Bmk Studio"
@@ -32,24 +67,17 @@ export const metadata: Metadata = {
   keywords: [
     "photographe Bruxelles", "photographie produit Bruxelles", "studio photo Bruxelles",
     "vidéaste Bruxelles", "vidéo commerciale Bruxelles", "photographe produit Belgique",
-    "photo artisanat Belgique", "photographie luxe Bruxelles", "studio vidéo Bruxelles",
-    "photographe packshot Bruxelles", "photo e-commerce Belgique", "vidéo réseaux sociaux Bruxelles",
-    "photographe maroquinerie", "photographe joaillerie", "photographe cosmétiques",
-    "photographe restaurant Bruxelles", "photo culinaire Bruxelles", "photographe coiffure Bruxelles",
-    "formation photo Bruxelles", "formation Bruxelles", "apprendre photographie Bruxelles",
-    "atelier photo produit", "BMK Studio", "Bmk photographie", "photographe commercial Belgique",
+    "photographe packshot Bruxelles", "photo e-commerce Belgique",
+    "formation photo Bruxelles", "atelier photo produit", "BMK Studio",
     "Brussels photographer", "Brussels product photography", "commercial photographer Brussels",
-    "Brussels video production", "product photographer Belgium", "Brussels studio photography",
-    "artisan photography Belgium", "luxury photography Brussels", "Brussels brand photography",
-    "photographer Brussels", "videographer Brussels", "Brussels content creator"
   ],
   authors: [{ name: "Bmk Studio" }],
   creator: "Bmk Studio",
   openGraph: {
     type: "website",
     locale: "fr_BE",
-    alternateLocale: "en_GB",
-    url: "https://bmkstudio.be",
+    alternateLocale: "en_US",
+    url: "https://www.bmkstudio.be",
     siteName: "Bmk Studio",
     title: "Bmk Studio — Photographie & Vidéo Commerciale · Bruxelles",
     description: "Studio de photographie produit et vidéo commerciale basé à Bruxelles. Lumière dramatique, textures sublimées, images qui vendent.",
@@ -65,14 +93,19 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/PJ_437_Logo-01.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
     ],
-    shortcut: "/PJ_437_Logo-01.svg",
-    apple: "/PJ_437_Logo-01.svg",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
   },
   alternates: {
-    canonical: "https://bmkstudio.be",
-    languages: { "fr-BE": "https://bmkstudio.be", "en": "https://bmkstudio.be/en" }
-  }
+    canonical: "/",
+    languages: {
+      "x-default": "https://www.bmkstudio.be",
+      "fr-BE": "https://www.bmkstudio.be",
+      "en": "https://www.bmkstudio.be/en",
+    },
+  },
 };
 
 export default function RootLayout({
@@ -86,6 +119,10 @@ export default function RootLayout({
       className={`${archivoBlack.variable} ${meaCulpa.variable} ${inter.variable} ${inter.variable}`}
     >
       <body className="bg-bmk-bg font-inter text-bmk-text antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
         <Nav />
         <GSAPProvider>{children}</GSAPProvider>
       </body>

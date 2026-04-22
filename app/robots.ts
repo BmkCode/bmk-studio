@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://bmkstudio.be/sitemap.xml",
+    sitemap: "https://www.bmkstudio.be/sitemap.xml",
   };
 }

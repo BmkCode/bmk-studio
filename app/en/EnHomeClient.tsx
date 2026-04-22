@@ -2,13 +2,17 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import WorkSection from "./components/WorkSection";
-import InterludeSection from "./components/InterludeSection";
-import ContactSection from "./components/ContactSection";
-import Footer from "./components/Footer";
-import { useIsMobile } from "./hooks/useIsMobile";
+import WorkSection from "../components/WorkSection";
+import InterludeSection from "../components/InterludeSection";
+import ContactSection from "../components/ContactSection";
+import Footer from "../components/Footer";
+import { useIsMobile } from "../hooks/useIsMobile";
+import { translations } from "../../lib/translations";
 
-export default function Home() {
+const t = translations.en;
+const basePath = "/en";
+
+export default function EnHomeClient() {
   const isMobile = useIsMobile();
   const h1Ref = useRef<HTMLDivElement>(null);
   const acrocheRef = useRef<HTMLDivElement>(null);
@@ -54,14 +58,14 @@ export default function Home() {
               <span className="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-bmk-accent" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-bmk-accent" />
             </span>
-            <h1 className="font-inter text-xs font-light uppercase tracking-[0.22em] text-bmk-text/50">
-              Studio photo &amp; vidéo — Bruxelles
-            </h1>
+            <span className="font-inter text-xs font-light uppercase tracking-[0.22em] text-bmk-text/50">
+              {t.hero.eyebrow}
+            </span>
           </div>
 
-          {/* Poetic tagline */}
+          {/* h1 */}
           <div ref={h1Ref}>
-            <p
+            <h1
               className="hero-h1 font-archivo leading-[1.1] text-bmk-text"
               style={isMobile ? {
                 fontSize: 28,
@@ -74,11 +78,11 @@ export default function Home() {
                 transform: "scaleY(1.15)",
               }}
             >
-              Ce que l&apos;œil humain ne perçoit pas,
-            </p>
+              {t.hero.title}
+            </h1>
           </div>
 
-          {/* Accroche Mea Culpa */}
+          {/* Accroche Mea Culpa — "Bmk reveals it." */}
           <div ref={acrocheRef} className="hero-accroche">
             <p
               className="mt-2 text-bmk-accent"
@@ -91,27 +95,27 @@ export default function Home() {
                 Bmk
               </span>
               <span className="font-meaculpa italic">
-                {" "}le{" "}
+                {" "}
                 <span
                   style={{
                     textShadow:
                       "0 0 30px rgba(255,180,0,0.4), 0 0 60px rgba(255,180,0,0.15)",
                   }}
                 >
-                  révèle
+                  reveals
                 </span>
-                .
+                {" "}it.
               </span>
             </p>
           </div>
 
-          {/* Sous-titre */}
+          {/* Subtitle */}
           <div ref={subtitleRef}>
             <p
               className="mt-7 font-inter font-light leading-relaxed text-bmk-text/55"
               style={{ maxWidth: 340, fontSize: 15 }}
             >
-              Photographie de produit et vidéo commerciale pour les marques qui refusent le banal.
+              {t.hero.subtitle}
             </p>
           </div>
 
@@ -122,38 +126,40 @@ export default function Home() {
               className="inline-flex h-11 items-center justify-center bg-bmk-accent px-7 font-inter text-sm font-light tracking-widest text-bmk-bg transition-all duration-300 hover:bg-bmk-accent-2 hover:shadow-[0_0_28px_rgba(255,180,0,0.35)]"
               style={{ borderRadius: 8 }}
             >
-              Voir le portfolio
+              {t.hero.cta_primary}
             </a>
             <a
-              href="/contact"
+              href={`${basePath}/contact`}
               className="inline-flex h-11 items-center justify-center px-7 font-inter text-sm font-light tracking-widest text-bmk-text/80 transition-all duration-300 hover:text-bmk-accent"
               style={{
                 borderRadius: 8,
                 border: "1px solid rgba(255,255,255,0.12)",
               }}
             >
-              Demander un devis
+              {t.hero.cta_secondary}
             </a>
           </div>
         </div>
 
         {/* Right panel */}
-        {!isMobile && <div
-          className="hero-right-panel absolute bottom-0 right-0 top-0"
-          aria-hidden
-          style={{
-            width: 290,
-            backgroundColor: "#0b1018",
-            borderLeft: "1px solid rgba(255,180,0,0.13)",
-          }}
-        >
+        {!isMobile && (
           <div
-            className="absolute inset-y-0 right-full w-36"
+            className="hero-right-panel absolute bottom-0 right-0 top-0"
+            aria-hidden
             style={{
-              background: "linear-gradient(to right, transparent 0%, #0b1018 100%)",
+              width: 290,
+              backgroundColor: "#0b1018",
+              borderLeft: "1px solid rgba(255,180,0,0.13)",
             }}
-          />
-        </div>}
+          >
+            <div
+              className="absolute inset-y-0 right-full w-36"
+              style={{
+                background: "linear-gradient(to right, transparent 0%, #0b1018 100%)",
+              }}
+            />
+          </div>
+        )}
 
         {/* Bottom fade */}
         <div
@@ -167,10 +173,10 @@ export default function Home() {
       </main>
 
       {/* ────────────────── SECTIONS ────────────────── */}
-      <WorkSection />
-      <InterludeSection />
-      <ContactSection />
-      <Footer />
+      <WorkSection t={t} basePath={basePath} />
+      <InterludeSection t={t} />
+      <ContactSection t={t} basePath={basePath} />
+      <Footer t={t} />
     </>
   );
 }
