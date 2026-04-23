@@ -3,6 +3,7 @@ import { Archivo_Black, Mea_Culpa, Inter } from "next/font/google";
 import "./globals.css";
 import Nav from "./components/Nav";
 import GSAPProvider from "./components/GSAPProvider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
@@ -125,6 +126,7 @@ export default function RootLayout({
         />
         <Nav />
         <GSAPProvider>{children}</GSAPProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
